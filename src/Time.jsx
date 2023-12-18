@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
-import { Float, Text, Text3D } from "@react-three/drei"
+import { Float, Text3D } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
-import { Suspense, useEffect, useRef, useState} from "react"
+import { useState} from "react"
 
 const Time = ({size, color, location}) => {
 
@@ -19,25 +19,10 @@ const Time = ({size, color, location}) => {
         getMinutes()
         getSeconds()
     })
-
-
-    const ref = useRef()
-
-    useFrame(() => {
-        ref.current.rotation.y += 0.01
-        // ref.current.rotation.y += 0.001
-        // ref.current.rotation.z += 0.001
-    })
-
   return (
 
-    
-<Float
-    speed={5}
->
     <mesh
-        ref={ref}
-        position={[-4, 6, -2 ]}
+        position={[-10, 0, 8 ]}
         castShadow
         receiveShadow 
         >
@@ -51,10 +36,9 @@ const Time = ({size, color, location}) => {
          >
         {hours}:{minutes}:{seconds} 
         <meshPhongMaterial color={color}/>
-        {location}
+         - {location}
         </Text3D>
     </mesh>
-</Float>
   )
 }
 

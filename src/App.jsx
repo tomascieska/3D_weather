@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
 import { useEffect, useState } from 'react'
 
 import MainScene from './MainScene'
@@ -12,7 +11,6 @@ const apiKey = import.meta.env.VITE_APIKEY
 function App() {
   
   const [weatherData, setWeatherData] = useState()
-
  
 useEffect(() => {
   async function getTemperature () {
@@ -25,15 +23,15 @@ useEffect(() => {
   
 },[])  
 
+// camera={{fov: 20, near: 0.1, far: 2000, position: [0, 0, 1000]}}
   return (
     <>
-    <Canvas shadows camera={{fov: 75, near: 0.1, far: 1000, position: [0, 5, 20] }}>
+    <Canvas shadows >
         <ambientLight intensity={1}/>
         <pointLight castShadow intensity={20} position={[0, 2, 3]} color={'red'}/>
         <pointLight castShadow intensity={20} position={[0, 3, 2]} color={'red'}/>
       <color attach="background" args={['#171720']}/>
       <MainScene weatherData={weatherData} />
-      <OrbitControls />
     </Canvas>
     </>
   )
