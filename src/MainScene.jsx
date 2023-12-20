@@ -1,32 +1,16 @@
 /* eslint-disable react/no-unknown-property */
 // import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import { useEffect, useState, useRef } from "react"
-import { useFrame } from '@react-three/fiber'
-// import Floor from "./Floor"
 import Time from "./Time"
-// import CloudSky from "./CloudSky"
+import CloudSky from "./CloudSky"
 import World from "./World"
-// import { Shoe_model } from "./Shoe_model"
-// import { Earth } from "./Earth"
 
 const MainScene = ({weatherData, changeLocation}) => {
 
     const [celcius, setCelcius] = useState()
     const [location, setLocation] = useState()
-    
-    // const orbitControlsRef = useRef(null)
 
-    // useFrame((state) => {
-    //     const { x, y } = state.mouse
-    // })
-
-    // useEffect(() => {
-    //     if(orbitControlsRef.current){
-    //         console.log(orbitControlsRef.current)
-            
-    //     }
-
-    // },[])
+console.log(weatherData)
 
     useEffect(() => {
         setCelcius(weatherData.current.feelslike_c)
@@ -34,9 +18,9 @@ const MainScene = ({weatherData, changeLocation}) => {
 
     useEffect(() => {
         setLocation(weatherData.location.name)
-    })
+    },[weatherData])
     
-    console.log(celcius)
+
 
   return (
     <group>
@@ -48,18 +32,12 @@ const MainScene = ({weatherData, changeLocation}) => {
         <pointLight castShadow intensity={20} position={[0, 5, 2]} color={'red'}/>
         <spotLight castShadow intensity={20} position={[0, 5, 10]} color={'blue'}/>
         <directionalLight castShadow intensity={0.2} position={[4, 2, 3]} color={'blue'}/>
-        {/* <Shoe_model /> */}
+
         <Time size={2} color={'purple'} location={location}/>
 
-        <mesh onClick={changeLocation} position={[-10, 20, 0]}>
-        <boxGeometry args={[5, 5, 0.5]}/>
-        <meshPhongMaterial color={"blue"}/>
-      </mesh>
+        
        
-        {/* <CloudSky celcius={celcius} /> */}
-        {/* <Earth position={[0, 0, 0]}/> */}
-        <World />
-        {/* <Floor /> */}
+        <World changeLocation={changeLocation} data={weatherData}/>
     </group>
     )
 }
