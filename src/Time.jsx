@@ -22,7 +22,7 @@ const Time = ({size, color, location}) => {
   return (
 
     <mesh
-        position={[-10, 0, 8 ]}
+        position={[0, 20, 0 ]}
         castShadow
         receiveShadow 
         >
