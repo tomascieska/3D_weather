@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 
 import { Canvas } from '@react-three/fiber'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 
 import MainScene from './MainScene'
 import './index.css'
@@ -36,12 +36,14 @@ function runWeather (loc){
 // camera={{fov: 20, near: 0.1, far: 2000, position: [0, 0, 1000]}}
   return (
     <>
-    <Canvas shadows camera={{fov: 20, near: 0.1, far: 2000, position: [0, 0, 200]}}>
+    <Canvas shadows camera={{ position: [0, 0, 100], fov: 42 }}>
         <ambientLight intensity={1}/>
         <pointLight castShadow intensity={20} position={[0, 2, 3]} color={'red'}/>
         <pointLight castShadow intensity={20} position={[0, 3, 2]} color={'red'}/>
       <color attach="background" args={['#171720']}/>
-      <MainScene changeLocation={runWeather} weatherData={weatherData} /> 
+      <Suspense>
+        <MainScene changeLocation={runWeather} weatherData={weatherData} /> 
+      </Suspense>
     </Canvas>
     </>
   )

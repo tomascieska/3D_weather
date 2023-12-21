@@ -2,7 +2,7 @@
 // import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import { useEffect, useState, useRef } from "react"
 import Time from "./Time"
-import CloudSky from "./CloudSky"
+// import CloudSky from "./CloudSky"
 import World from "./World"
 
 const MainScene = ({weatherData, changeLocation}) => {
