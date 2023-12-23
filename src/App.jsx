@@ -7,7 +7,7 @@ import MainScene from './MainScene'
 import './index.css'
 
 const apiKey = import.meta.env.VITE_APIKEY
-let location = "London"
+let location = "Paris"
 
 function App() {
   
@@ -24,23 +24,20 @@ useEffect(() => {
   }
   getTemperature()
   
-},[getWeather])  
+},[])  
 
+
+// getWeather
 function runWeather (loc){
   setGetWeather(!getWeather)
   location = loc
 }
-
-
-
 // camera={{fov: 20, near: 0.1, far: 2000, position: [0, 0, 1000]}}
+// camera={{fov: 20, near: 0.1, far: 2000, position: [0, 10, 150]}}
   return (
     <>
-    <Canvas shadows camera={{ position: [0, 0, 100], fov: 42 }}>
-        <ambientLight intensity={1}/>
-        <pointLight castShadow intensity={20} position={[0, 2, 3]} color={'red'}/>
-        <pointLight castShadow intensity={20} position={[0, 3, 2]} color={'red'}/>
-      <color attach="background" args={['#171720']}/>
+    <Canvas shadows >
+      <color attach="background" args={['#3a86ff']}/>
       <Suspense>
         <MainScene changeLocation={runWeather} weatherData={weatherData} /> 
       </Suspense>
