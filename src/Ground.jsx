@@ -1,8 +1,10 @@
 /* eslint-disable react/no-unknown-property */
 
 const Ground = () => {
+
+
   return (
-    <mesh 
+    <mesh
         scale={100}
         rotation={[-Math.PI /2, 0, 0]}
         receiveShadow

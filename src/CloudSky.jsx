@@ -4,7 +4,7 @@ import { Clouds, Cloud, Float } from "@react-three/drei"
 const CloudSky = ({celcius}) => {
 
   let colorCloud = ""
-  console.log(celcius)
+  // console.log(celcius)
 
   function getCloud() {
 
@@ -21,7 +21,7 @@ const CloudSky = ({celcius}) => {
   return (
   <Float>
     <Clouds>
-      <Cloud position={[-5, 30, -15]} segments={50} fade={10} bounds={[30, 10, 10]} volume={50} opacity={0.2} color={colorCloud} />
+      <Cloud position={[-5, 30, 40]} segments={50} fade={10} bounds={[30, 10, 10]} volume={50} opacity={0.2} color={colorCloud} />
     </Clouds>
   </Float>
   )

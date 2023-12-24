@@ -6,7 +6,7 @@ const Lights = () => {
         <ambientLight intensity={0.5}/>
         <directionalLight 
             intensity={5}
-            position={[30, 10, 10]}
+            position={[30, 10, 80]}
             color={'white'}
             castShadow
             shadow-mapSize-height={1000}
@@ -17,7 +17,7 @@ const Lights = () => {
             shadow-camera-bottom={-20}
             />
             
-        <pointLight intensity={5} position={[5, 20, 3]} color={'yellow'}/>
+        <pointLight intensity={5} position={[5, 20, 80]} color={'yellow'}/>
         <hemisphereLight args={["#ffbe0b", "#3a86ff", 0.5]}/>
     </group>
 

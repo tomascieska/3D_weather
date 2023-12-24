@@ -4,14 +4,14 @@
 import { useEffect, useState, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import { CameraControls} from "@react-three/drei"
-import { degToRad } from "three/src/math/MathUtils"
 
-import Time from "./Screen"
-import World from "./World"
+import Screen from "./Screen"
 import Lights from "./Lights"
 import Ground from "./Ground"
 import CloudSky from "./CloudSky"
+
 import { EifelTower } from "./EifelTower"
+import { London } from "./London"
 
 const MainScene = ({weatherData, changeLocation}) => {
 
@@ -21,20 +21,20 @@ const MainScene = ({weatherData, changeLocation}) => {
     const meshFitCameraRef = useRef()
     const controls = useRef()
     const spinRef = useRef()
-
+    const parisRef = useRef()
 
     useEffect(() => {
         setCelcius(weatherData.current.feelslike_c)
         setLocation(weatherData.location.name)
         
-    }, [weatherData])
-
+    }, [parisRef])
 
 //world spining
     useFrame(() => {
-        spinRef.current.rotation.y += 0.001
+        spinRef.current.rotation.y -= 0.005
+        // parisRef.current.rotation.y += 0.1
+        console.log(parisRef)
     })
-
 
 // CAMERA CONTOLS ########
 const intro = async () => {
@@ -43,12 +43,9 @@ const intro = async () => {
   fitCamera()
 }
 
-  console.log(  controls.current)
-
 useEffect(() => {
   intro()
 },[])
-
 
 useEffect(() => {
   fitCamera();
@@ -64,25 +61,26 @@ const fitCamera = async () => {
 // ########
   return (
     <group>
-        <CameraControls  ref={controls}/>
+        <CameraControls ref={controls}/>
 
         <mesh ref={meshFitCameraRef} 
-            position={[18, 15, 15]}
-            // rotation={[-10, 0, 0]}
+            position={[18, 15, 95]}
             >
             <boxGeometry args={[22, 8, 10]}/>
             <meshBasicMaterial transparent opacity={0.8} visible={false} color={"orange"} />
         </mesh>
 
-
         <CloudSky celcius={celcius}/>
         <Lights />
-        <group ref={spinRef} >
-            <EifelTower/>
-            <Ground />
+
+        <group ref={spinRef}>
+            <group ref={parisRef}>
+                <EifelTower position={[0, 0, 80]} />
+            </group>
+            <London scale= {0.3} position={[80, 8, 0]}/>
+            <Ground changeLocation={changeLocation}/>
         </group>
-        <Time size={2} color={'purple'} data={weatherData} celcius={celcius} location={location}/>       
-        <World changeLocation={changeLocation} data={weatherData}/>
+        <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} celcius={celcius} location={location}/>       
     </group>
     )
 }

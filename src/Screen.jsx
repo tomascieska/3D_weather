@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
-import { Float, Text, Text3D } from "@react-three/drei"
+import { Text, Text3D } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { useEffect, useState} from "react"
 
-const Time = ({ data }) => {
+const Screen = ({ data, changeLocation}) => {
 
 
     const [hours, setHours] = useState()
@@ -20,11 +21,10 @@ const Time = ({ data }) => {
         getSeconds()
     })
 
-    console.log(data)
 
   return (
 <group
-  position={[30, 15, 10]}
+  position={[30, 15, 90]}
   rotation={[0, -0.3, 0]} >
 
         <mesh >
@@ -47,9 +47,9 @@ const Time = ({ data }) => {
 
         <Text position={[-1, -3, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={2}>
         <meshPhongMaterial color={"black"}/>
-        {data.current.temp_c} - C
+        {data.current.temp_c} c
         {"\n"}
-        {data.current.temp_f} - F
+        {data.current.temp_f} f
         </Text>
 
         <Text position={[-1, -8, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={1}>
@@ -57,9 +57,13 @@ const Time = ({ data }) => {
         Local time: {hours}:{minutes}:{seconds} 
         </Text>
 
+      <mesh position={[10, -13, 2]} onClick={() => changeLocation("Berlin")} >
+          <boxGeometry args={[5, 3, -0.5]}/>
+          <meshPhongMaterial color={"blue"}/>
+        </mesh>
     </mesh>
 </group>
   )
 }
 
-export default Time
+export default Screen

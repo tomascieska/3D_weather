@@ -7,7 +7,7 @@ import MainScene from './MainScene'
 import './index.css'
 
 const apiKey = import.meta.env.VITE_APIKEY
-let location = "Paris"
+let location = "Moscow"
 
 function App() {
   
@@ -24,7 +24,7 @@ useEffect(() => {
   }
   getTemperature()
   
-},[])  
+},[getWeather])  
 
 
 // getWeather
