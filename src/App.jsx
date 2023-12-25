@@ -7,7 +7,7 @@ import MainScene from './MainScene'
 import './index.css'
 
 const apiKey = import.meta.env.VITE_APIKEY
-let location = "Moscow"
+let location = "Paris"
 
 function App() {
   

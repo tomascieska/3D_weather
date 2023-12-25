@@ -4,7 +4,7 @@ import { Text, Text3D } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { useEffect, useState} from "react"
 
-const Screen = ({ data, changeLocation}) => {
+const Screen = ({ data}) => {
 
 
     const [hours, setHours] = useState()
@@ -34,7 +34,7 @@ const Screen = ({ data, changeLocation}) => {
 
     <mesh position={[-12, 8, 1]} castShadow receiveShadow >
 
-        <Text3D position={[-1, 1, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'} size={3}
+        <Text3D position={[-1, 1, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'} size={2}
         smooth={0.01} lineHeight={5} bevelEnabled bevelThickness={0.15}>
         <meshPhongMaterial color={"Grey"}/>
         {data.location.name}
@@ -56,11 +56,6 @@ const Screen = ({ data, changeLocation}) => {
         <meshPhongMaterial color={"grey"}/>
         Local time: {hours}:{minutes}:{seconds} 
         </Text>
-
-      <mesh position={[10, -13, 2]} onClick={() => changeLocation("Berlin")} >
-          <boxGeometry args={[5, 3, -0.5]}/>
-          <meshPhongMaterial color={"blue"}/>
-        </mesh>
     </mesh>
 </group>
   )

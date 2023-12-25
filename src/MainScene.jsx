@@ -4,37 +4,78 @@
 import { useEffect, useState, useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import { CameraControls} from "@react-three/drei"
+import { degToRad, radToDeg } from "three/src/math/MathUtils"
 
 import Screen from "./Screen"
 import Lights from "./Lights"
 import Ground from "./Ground"
 import CloudSky from "./CloudSky"
+// import Animo from "./Animo"
 
 import { EifelTower } from "./EifelTower"
-import { London } from "./London"
+import { Landmark } from "./Landmark"
 
 const MainScene = ({weatherData, changeLocation}) => {
 
     const [celcius, setCelcius] = useState()
     const [location, setLocation] = useState()
+    const [start, setStart] = useState()
 
     const meshFitCameraRef = useRef()
     const controls = useRef()
     const spinRef = useRef()
-    const parisRef = useRef()
 
     useEffect(() => {
         setCelcius(weatherData.current.feelslike_c)
         setLocation(weatherData.location.name)
-        
-    }, [parisRef])
+    },[])
 
-//world spining
-    useFrame(() => {
-        spinRef.current.rotation.y -= 0.005
-        // parisRef.current.rotation.y += 0.1
-        console.log(parisRef)
-    })
+function spinRight() {
+  spinRef.current.rotation.y += degToRad(-90)
+  checkLocation()
+}
+
+function spinLeft() {
+  spinRef.current.rotation.y -= degToRad(-90)
+  checkLocation()
+}
+
+async function checkLocation(){
+  console.log(radToDeg(spinRef.current.rotation.y))
+  
+  if(spinRef.current.rotation.y === degToRad(-360)){
+    spinRef.current.rotation.y = 0
+  }
+  if(spinRef.current.rotation.y === degToRad(360)){
+    spinRef.current.rotation.y = 0
+  }
+  if(spinRef.current.rotation.y === degToRad(0)){
+    return changeLocation("Paris")
+    }
+
+  if(spinRef.current.rotation.y === degToRad(-90) ||
+     spinRef.current.rotation.y === degToRad(90)){
+     return changeLocation("London")
+    }
+
+  if(spinRef.current.rotation.y === degToRad(-180) ||
+     spinRef.current.rotation.y ===degToRad(180)){
+     return changeLocation("Tokyo")
+    }
+
+    if(spinRef.current.rotation.y === degToRad(-270) ||
+       spinRef.current.rotation.y === degToRad(270)){
+      return changeLocation("New York")
+    } 
+}
+
+useFrame(() => {
+  if(spinRef.current.rotation.y === degToRad(0)){
+    spinRef.current.rotation.y += 0.2
+    }  if(spinRef.current.rotation.y === degToRad(90)){
+      spinRef.current.rotation.y === degToRad(90)
+      }
+})
 
 // CAMERA CONTOLS ########
 const intro = async () => {
@@ -72,14 +113,32 @@ const fitCamera = async () => {
 
         <CloudSky celcius={celcius}/>
         <Lights />
+{/* button */}
+    <group>
+
+        <mesh position={[30, 15, 90]} onClick={() => spinRight()} >
+          <boxGeometry args={[5, 3, -0.5]}/>
+          <meshPhongMaterial color={"blue"}/>
+        </mesh>
+
+    </group>
+        <mesh position={[30, 10, 90]} onClick={() => spinLeft()} >
+          <boxGeometry args={[5, 3, -0.5]}/>
+          <meshPhongMaterial color={"red"}/>
+        </mesh>
+{/* center */}
+        <mesh position={[0, 0, 0]}>
+          <boxGeometry args={[10, 1, 1]}/>
+          <meshPhongMaterial color={"red"}/>
+        </mesh>
 
         <group ref={spinRef}>
-            <group ref={parisRef}>
-                <EifelTower position={[0, 0, 80]} />
-            </group>
-            <London scale= {0.3} position={[80, 8, 0]}/>
+            <Landmark position={[0, 0, 0]}/>
+            <EifelTower position={[0, 0, 80]} />
+            {/* <London scale= {0.3} position={[80, 8, 0]}/> */}
             <Ground changeLocation={changeLocation}/>
         </group>
+        {/* <Animo/> */}
         <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} celcius={celcius} location={location}/>       
     </group>
     )
