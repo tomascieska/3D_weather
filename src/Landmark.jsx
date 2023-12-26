@@ -25,7 +25,7 @@ export function Landmark(props) {
     <group scale={100} {...props} dispose={null}>
       <group name="Sketchfab_Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
-      <primitive object={model.scene}/>
+      {/* <primitive object={model.scene}/> */}
           <group name="071aa99bfdbb4f5994c862281f0471fcfbx" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
             <group name="RootNode">
               <group name="S_LandmarksIndia_Minor_Landmarks">

@@ -10,10 +10,10 @@ import Screen from "./Screen"
 import Lights from "./Lights"
 import Ground from "./Ground"
 import CloudSky from "./CloudSky"
-// import Animo from "./Animo"
+import Animo from "./Animo"
 
 import { EifelTower } from "./EifelTower"
-import { Landmark } from "./Landmark"
+// import { Landmark } from "./Landmark"
 
 const MainScene = ({weatherData, changeLocation}) => {
 
@@ -69,14 +69,6 @@ async function checkLocation(){
     } 
 }
 
-useFrame(() => {
-  if(spinRef.current.rotation.y === degToRad(0)){
-    spinRef.current.rotation.y += 0.2
-    }  if(spinRef.current.rotation.y === degToRad(90)){
-      spinRef.current.rotation.y === degToRad(90)
-      }
-})
-
 // CAMERA CONTOLS ########
 const intro = async () => {
   controls.current.dolly(-100)
@@ -114,28 +106,22 @@ const fitCamera = async () => {
         <CloudSky celcius={celcius}/>
         <Lights />
 {/* button */}
-    <group>
 
         <mesh position={[30, 15, 90]} onClick={() => spinRight()} >
           <boxGeometry args={[5, 3, -0.5]}/>
           <meshPhongMaterial color={"blue"}/>
         </mesh>
 
-    </group>
         <mesh position={[30, 10, 90]} onClick={() => spinLeft()} >
           <boxGeometry args={[5, 3, -0.5]}/>
           <meshPhongMaterial color={"red"}/>
         </mesh>
-{/* center */}
-        <mesh position={[0, 0, 0]}>
-          <boxGeometry args={[10, 1, 1]}/>
-          <meshPhongMaterial color={"red"}/>
-        </mesh>
 
         <group ref={spinRef}>
-            <Landmark position={[0, 0, 0]}/>
+            {/* <Landmark position={[0, 0, 0]}/> */}
             <EifelTower position={[0, 0, 80]} />
             {/* <London scale= {0.3} position={[80, 8, 0]}/> */}
+            <Animo />
             <Ground changeLocation={changeLocation}/>
         </group>
         {/* <Animo/> */}

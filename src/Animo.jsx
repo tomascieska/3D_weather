@@ -1,27 +1,37 @@
 /* eslint-disable react/no-unknown-property */
-import { useSpring, a } from "@react-spring/web"
+import { useSpring, animated, config } from "@react-spring/three"
+import { useFrame } from "@react-three/fiber"
+import { useRef, useState } from "react"
 
 
 const Animo = () => {
 
-    const { x } = useSpring({
-        to: { x: 100 },
-        from: { x: 0 },
-        loop: { reverse: true },
-      })
+  const [active, setActive] = useState(false)
+  const myMesh = useRef() 
 
 
+  const { scale } = useSpring({ 
+    // scale: active ? 20 : 10,
+    scale: active ? 20 : 10,
+    config: config.wobbly, 
+  
+  })
+
+  useFrame(({ clock }) => {
+    const a = clock.getElapsedTime();
+    myMesh.current.rotation.x = a;
+    myMesh.current.rotation.y = a;
+    myMesh.current.rotation.z = a;
+  });
+
+console.log(scale)
 
 return (
-  <group>
-  <a.group transform={x}>
 
-  <mesh>
-    <boxGeometry args={[15,15,15]} />
-    <meshStandardMaterial color={"red"}/>
-  </mesh>
-</a.group>
-</group>
+  <animated.mesh position={[0, 10, 80]} scale={scale} onClick={() => setActive(!active)} ref={myMesh}>
+  <boxGeometry />
+  <meshPhongMaterial color="royalblue" />
+</animated.mesh>
 )
 
 }
