@@ -8,7 +8,6 @@ Source: https://sketchfab.com/3d-models/london-phonebooth-24204dccd16c4508bd0cc2
 Title: London Phonebooth
 */
 
-import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function London(props) {

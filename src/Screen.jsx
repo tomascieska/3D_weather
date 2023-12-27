@@ -24,7 +24,7 @@ const Screen = ({ data}) => {
 
   return (
 <group
-  position={[30, 15, 90]}
+  position={[35, 15, 90]}
   rotation={[0, -0.3, 0]} >
 
         <mesh >

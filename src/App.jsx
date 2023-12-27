@@ -38,7 +38,7 @@ function runWeather (loc){
     <>
     <Canvas shadows >
       <color attach="background" args={['#3a86ff']}/>
-      <Suspense>
+      <Suspense fallback={null}>
         <MainScene changeLocation={runWeather} weatherData={weatherData} /> 
       </Suspense>
     </Canvas>
