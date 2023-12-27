@@ -12,14 +12,18 @@ import Lights from "./Lights"
 import Ground from "./Ground"
 import CloudSky from "./CloudSky"
 import { EifelTower } from "./EifelTower"
-import { Landmark } from "./Landmark"
+import { UK } from "./UK"
+import { Eiffel } from "./Eiffel"
+import { Eiffel512 } from "./Eiffel512"
+import { ArcDeTriomphe } from "./ArcDeTriomphe"
 
 const MainScene = ({weatherData, changeLocation}) => {
 
     const [celcius, setCelcius] = useState()
     const [location, setLocation] = useState()
     const [rightBtn, setRightBtn] = useState(false)
-    const [leftBtn, setLeftBtn] = useState(false)   
+    const [leftBtn, setLeftBtn] = useState(false)
+    const [currentRotation, setCurrentRotation] = useState()
 
     const meshFitCameraRef = useRef()
     const controls = useRef()
@@ -30,6 +34,7 @@ const MainScene = ({weatherData, changeLocation}) => {
       setLocation(weatherData.location.name)
   },[])
     
+  // LOCATION CHECKING
 async function checkLocation(){
   console.log(radToDeg(spinRef.current.rotation.y))
   
@@ -43,46 +48,56 @@ async function checkLocation(){
     return changeLocation("Paris")
     }
 
-  if(spinRef.current.rotation.y === degToRad(-90) ||
-     spinRef.current.rotation.y === degToRad(90)){
+  if(spinRef.current.rotation.y === degToRad(90) ||
+     spinRef.current.rotation.y === degToRad(-270)
+  ){
      return changeLocation("London")
     }
 
-  if(spinRef.current.rotation.y === degToRad(-180) ||
-     spinRef.current.rotation.y ===degToRad(180)){
+  if(spinRef.current.rotation.y ===degToRad(180) || 
+     spinRef.current.rotation.y ===degToRad(-180)
+  ){
      return changeLocation("Tokyo")
     }
 
-    if(spinRef.current.rotation.y === degToRad(-270) ||
-       spinRef.current.rotation.y === degToRad(270)){
+    if(spinRef.current.rotation.y === degToRad(270) ||
+       spinRef.current.rotation.y === degToRad(-270)
+    ){
       return changeLocation("New York")
     } 
 }
 
+  useEffect(() => {
+    setCurrentRotation(spinRef.current.rotation.y)
+  },[currentRotation]) 
+
     const {sizeRight, sizeLeft, rot } = useSpring({
       sizeRight: rightBtn ? 0.9 : 1.2,
       sizeLeft: leftBtn ? 0.9 : 1.2,
-      rot: rightBtn && spinRef.current.rotation.y + degToRad(90),
+      // from: {rot: rightBtn && currentRotation},
+      // to: {rot: rightBtn && currentRotation - Math.PI /4},
+      
       config: config.wobbly,
     })
 
     function moveRight() {
       setRightBtn(true)
       setLeftBtn(false)
-        spinRef.current.rotation.y -= degToRad(90)
+        spinRef.current.rotation.y += (Math.PI /4)
       checkLocation()
+      console.log(spinRef.current.rotation.y)
     }
     
     function moveLeft() {
       setRightBtn(false)
       setLeftBtn(true)
-        spinRef.current.rotation.y += degToRad(-90)
+        spinRef.current.rotation.y -= (Math.PI /4)
       checkLocation()
     }
 
 // CAMERA CONTOLS ########
 const intro = async () => {
-  controls.current.dolly(-100)
+  controls.current.dolly(50)
   controls.current.smoothTime = 1
   fitCamera()
 }
@@ -116,9 +131,9 @@ const fitCamera = async () => {
         <Lights />
        
         <animated.group rotation-y={rot} ref={spinRef}>
-          <Landmark position={[0, 0, 0]}/>
-          <EifelTower position={[0, 0, 80]} />
-            {/* <London scale= {0.3} position={[80, 8, 0]}/> */}
+          <ArcDeTriomphe position={[30, 0, 80]} />
+          <Eiffel512  position={[0, 0, 80]}/>
+          <UK position={[-70, 0, degToRad(90)]}/>
           <Ground changeLocation={changeLocation}/>
         </animated.group>
 

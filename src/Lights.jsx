@@ -5,7 +5,7 @@ const Lights = () => {
     <group>
         <ambientLight intensity={0.5}/>
         <directionalLight 
-            intensity={5}
+            intensity={7}
             position={[30, 10, 80]}
             color={'white'}
             castShadow
