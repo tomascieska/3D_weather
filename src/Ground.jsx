@@ -10,7 +10,7 @@ const Ground = () => {
         receiveShadow
         >
         <circleGeometry args={[5,50]}/>
-        <meshStandardMaterial color={"darkgreen"}/>
+        <meshStandardMaterial color={"yellow"}/>
     </mesh>
   )
 }

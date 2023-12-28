@@ -25,22 +25,24 @@ const Screen = ({ data}) => {
   return (
 <group
   position={[35, 15, 90]}
-  rotation={[0, -0.3, 0]} >
+  rotation={[0, -0.3, 0]}
+  visible={false}
+  >
 
         <mesh >
             <boxGeometry args={[30, 25, 1]}/>
-            <meshBasicMaterial transparent opacity={0.1} visible={true} color={"grey"} />
+            <meshBasicMaterial transparent opacity={0.2} visible={true} color={"white"} />
         </mesh>
 
     <mesh position={[-12, 8, 1]} castShadow receiveShadow >
 
-        <Text3D position={[-1, 1, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'} size={2}
-        smooth={0.01} lineHeight={5} bevelEnabled bevelThickness={0.15}>
+        <Text3D position={[-1, 0, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'} size={3}
+        smooth={0.01} lineHeight={3} bevelEnabled bevelThickness={0.1}>
         <meshPhongMaterial color={"Grey"}/>
         {data.location.name}
         </Text3D>
 
-        <Text position={[-1, 0, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={1.5}>
+        <Text position={[2, -1, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={1.5}>
         <meshPhongMaterial color={"Black"}/>
         {data.location.country}
         </Text>

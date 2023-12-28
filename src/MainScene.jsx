@@ -11,11 +11,29 @@ import Screen from "./Screen"
 import Lights from "./Lights"
 import Ground from "./Ground"
 import CloudSky from "./CloudSky"
-import { EifelTower } from "./EifelTower"
-import { UK } from "./UK"
-import { Eiffel } from "./Eiffel"
-import { Eiffel512 } from "./Eiffel512"
-import { ArcDeTriomphe } from "./ArcDeTriomphe"
+import { EifelTower } from "./components/locations/EifelTower"
+import { ArcDeTriomphe } from "./components/locations/ArcDeTriomphe"
+import { BigBen } from "./components/locations/BigBen"
+import { BurjKhalifa } from "./components/locations/BurjKhalifa"
+import { WhiteHouse } from "./components/locations/WhiteHouse"
+import { Bisa } from "./components/locations/Bisa"
+import { BurjAl_Arab } from "./components/locations/BurjAl_Arab"
+import { CNTower } from "./components/locations/CNTower"
+import { Colosseum } from "./components/locations/Colosseum"
+import { Cristo_Reder } from "./components/locations/CristoReder"
+import { EmpireState } from "./components/locations/EmpireState"
+import { FlatironBuilding } from "./components/locations/FlatironBuilding"
+import { LondonTower } from "./components/locations/LondonTower"
+import { MesoamericanPyramid } from "./components/locations/MesoamericanPyramid"
+import { NotreDameDeParis } from "./components/locations/NotreDameDeParis"
+import { OneWorldTradeCenter } from "./components/locations/OneWorldTradeCenter"
+import { Pyramid } from "./components/locations/Pyramid"
+import { Stonehenge } from "./components/locations/Stonehenge"
+import { SydneyOperaHouse } from "./components/locations/SydneyOperaHouse"
+import { TajMahal } from "./components/locations/TajMahal"
+import { TheStatueOfLiberty } from "./components/locations/TheStatueOfLiberty"
+import { TokyoTower } from "./components/locations/TokyoTower"
+import { WashingtonMonument } from "./components/locations/WashingtonMonument"
 
 const MainScene = ({weatherData, changeLocation}) => {
 
@@ -45,12 +63,21 @@ async function checkLocation(){
     spinRef.current.rotation.y = 0
   }
   if(spinRef.current.rotation.y === degToRad(0)){
+
+    meshFitCameraRef.current.position.y = 21
+    meshFitCameraRef.current.position.x = 10
+    meshFitCameraRef.current.position.z = 110
+    fitCamera()
     return changeLocation("Paris")
     }
 
   if(spinRef.current.rotation.y === degToRad(90) ||
      spinRef.current.rotation.y === degToRad(-270)
   ){
+    meshFitCameraRef.current.position.y = 14
+    meshFitCameraRef.current.position.x = 6
+    meshFitCameraRef.current.position.z = 100
+    fitCamera()
      return changeLocation("London")
     }
 
@@ -71,12 +98,9 @@ async function checkLocation(){
     setCurrentRotation(spinRef.current.rotation.y)
   },[currentRotation]) 
 
-    const {sizeRight, sizeLeft, rot } = useSpring({
+    const {sizeRight, sizeLeft} = useSpring({
       sizeRight: rightBtn ? 0.9 : 1.2,
       sizeLeft: leftBtn ? 0.9 : 1.2,
-      // from: {rot: rightBtn && currentRotation},
-      // to: {rot: rightBtn && currentRotation - Math.PI /4},
-      
       config: config.wobbly,
     })
 
@@ -102,12 +126,14 @@ const intro = async () => {
   fitCamera()
 }
 
+
 useEffect(() => {
   intro()
 },[])
 
 useEffect(() => {
   fitCamera();
+  
   window.addEventListener("resize", fitCamera);
   return () => window.removeEventListener("resize", fitCamera);
 }, []);
@@ -119,9 +145,12 @@ const fitCamera = async () => {
 } 
 // ########
 
+console.log(radToDeg(Math.PI * 2 / 14))
+
   return (
     <group>
         <CameraControls ref={controls}/>
+
         <mesh ref={meshFitCameraRef} position={[18, 15, 95]}>
             <boxGeometry args={[22, 8, 10]}/>
             <meshBasicMaterial transparent opacity={0.8} visible={false} color={"orange"} />
@@ -130,12 +159,33 @@ const fitCamera = async () => {
         <CloudSky celcius={celcius}/>
         <Lights />
        
-        <animated.group rotation-y={rot} ref={spinRef}>
-          <ArcDeTriomphe position={[30, 0, 80]} />
-          <Eiffel512  position={[0, 0, 80]}/>
-          <UK position={[-70, 0, degToRad(90)]}/>
+        <group position={[100, 0, 20]} ref={spinRef}>
+
+          <WashingtonMonument position={[50, 0.8, 60]}/>
+          <TokyoTower position={[-60, 0.8, 60]}/>
+          <TheStatueOfLiberty position={[-45, 0.8, 60]}/>
+          <TajMahal position={[-25, 0.8, 60]}/>
+          <SydneyOperaHouse position={[30, 0.8, 60]}/>
+          <Stonehenge position={[0, 0.8, 60]}/>
+          <Pyramid position={[60, 0.8, 40]}/>
+          <OneWorldTradeCenter position={[40, 0.8, 40]}/>
+          <NotreDameDeParis position={[20, 0.8, 40]}/>
+          <MesoamericanPyramid position={[-70, 0.8, 40]}/>
+          <LondonTower position={[-50, 0.8, 40]}/>
+          <FlatironBuilding position={[-35, 0.8, 40]}/>
+          <EmpireState position={[-20, 0.8, 40]}/>
+          <Cristo_Reder position={[0, 0.8, 40]} />
+          <Colosseum position={[70, 0.8, 0]} />
+          <CNTower position={[50, 0.8, 0]}/>
+          <BurjAl_Arab position={[30, 0.8, 0]}/>
+          <Bisa position={[0, 0.8, 0]}/>
+          <BurjKhalifa position={[-80, 0.8, 0]}/>
+          <WhiteHouse position={[-110, 0.8, 0]}/>
+          <ArcDeTriomphe position={[-40, 0.8, 0]}/>
+          <EifelTower position={[-20, 0.5, 0]}/>
+          <BigBen position={[-60, 0.5, 0]} visible={true} />
           <Ground changeLocation={changeLocation}/>
-        </animated.group>
+        </group>
 
         <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} celcius={celcius} location={location}/>       
 
