@@ -7,8 +7,8 @@ Files: public/models/Bisa.gltf [3.36MB] > C:\Users\Tomas\Desktop\3Dweather\src\c
 
 import { useGLTF } from '@react-three/drei'
 
-export function Bisa(props) {
-  const { nodes, materials } = useGLTF('/models/Bisa.glb')
+export function Pisa(props) {
+  const { nodes, materials } = useGLTF('/models/Pisa.glb')
   return (
     <group scale={3}{...props} dispose={null}>
       <group name="Scene">
@@ -18,4 +18,4 @@ export function Bisa(props) {
   )
 }
 
-useGLTF.preload('/models/Bisa.glb')
+useGLTF.preload('/models/Pisa.glb')

@@ -9,6 +9,7 @@ import { useGLTF } from '@react-three/drei'
 export function EifelTower(props) {
   const { nodes, materials } = useGLTF('/models/Eiffel_Tower.glb')
   const model = useGLTF('/models/Eiffel_Tower.glb')
+ 
 
   model.scene.traverse((object) => {
     if(object.isMesh){
@@ -19,10 +20,6 @@ export function EifelTower(props) {
   return (
     <group scale={4} {...props} dispose={null}>
       <group name="Scene">
-        <mesh>
-          <boxGeometry args={[20, 0.1, 20,]}/>
-          <meshPhongMaterial color={"#783f04"}/>
-        </mesh>
       <primitive object={model.scene}/>
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]}>
           <group name="b64dbcc2ba974b758d6d76dd2e2bb8adfbx" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>

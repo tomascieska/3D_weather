@@ -26,7 +26,7 @@ const Screen = ({ data}) => {
 <group
   position={[35, 15, 90]}
   rotation={[0, -0.3, 0]}
-  visible={false}
+  visible={true}
   >
 
         <mesh >

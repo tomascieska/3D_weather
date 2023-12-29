@@ -5,35 +5,14 @@ import { useEffect, useState, useRef } from "react"
 import { CameraControls} from "@react-three/drei"
 import { useSpring, animated, config } from '@react-spring/three'
 import { DirectionArrow } from './DirectionArrow'
-import { degToRad, radToDeg } from "three/src/math/MathUtils"
+import { degToRad } from "three/src/math/MathUtils"
 
 import Screen from "./Screen"
 import Lights from "./Lights"
 import Ground from "./Ground"
 import CloudSky from "./CloudSky"
-import { EifelTower } from "./components/locations/EifelTower"
-import { ArcDeTriomphe } from "./components/locations/ArcDeTriomphe"
-import { BigBen } from "./components/locations/BigBen"
-import { BurjKhalifa } from "./components/locations/BurjKhalifa"
-import { WhiteHouse } from "./components/locations/WhiteHouse"
-import { Bisa } from "./components/locations/Bisa"
-import { BurjAl_Arab } from "./components/locations/BurjAl_Arab"
-import { CNTower } from "./components/locations/CNTower"
-import { Colosseum } from "./components/locations/Colosseum"
-import { Cristo_Reder } from "./components/locations/CristoReder"
-import { EmpireState } from "./components/locations/EmpireState"
-import { FlatironBuilding } from "./components/locations/FlatironBuilding"
-import { LondonTower } from "./components/locations/LondonTower"
-import { MesoamericanPyramid } from "./components/locations/MesoamericanPyramid"
-import { NotreDameDeParis } from "./components/locations/NotreDameDeParis"
-import { OneWorldTradeCenter } from "./components/locations/OneWorldTradeCenter"
-import { Pyramid } from "./components/locations/Pyramid"
-import { Stonehenge } from "./components/locations/Stonehenge"
-import { SydneyOperaHouse } from "./components/locations/SydneyOperaHouse"
-import { TajMahal } from "./components/locations/TajMahal"
-import { TheStatueOfLiberty } from "./components/locations/TheStatueOfLiberty"
-import { TokyoTower } from "./components/locations/TokyoTower"
-import { WashingtonMonument } from "./components/locations/WashingtonMonument"
+import Locations from "./Locations"
+
 
 const MainScene = ({weatherData, changeLocation}) => {
 
@@ -47,6 +26,12 @@ const MainScene = ({weatherData, changeLocation}) => {
     const controls = useRef()
     const spinRef = useRef()
 
+
+    // useFrame(() => {
+    //   spinRef.current.rotation.y += 0.002
+      
+    // })
+
     useEffect(() => {
       setCelcius(weatherData.current.feelslike_c)
       setLocation(weatherData.location.name)
@@ -54,7 +39,6 @@ const MainScene = ({weatherData, changeLocation}) => {
     
   // LOCATION CHECKING
 async function checkLocation(){
-  console.log(radToDeg(spinRef.current.rotation.y))
   
   if(spinRef.current.rotation.y <= degToRad(-360)){
     spinRef.current.rotation.y = 0
@@ -145,8 +129,6 @@ const fitCamera = async () => {
 } 
 // ########
 
-console.log(radToDeg(Math.PI * 2 / 14))
-
   return (
     <group>
         <CameraControls ref={controls}/>
@@ -158,37 +140,12 @@ console.log(radToDeg(Math.PI * 2 / 14))
 
         <CloudSky celcius={celcius}/>
         <Lights />
-       
-        <group position={[100, 0, 20]} ref={spinRef}>
 
-          <WashingtonMonument position={[50, 0.8, 60]}/>
-          <TokyoTower position={[-60, 0.8, 60]}/>
-          <TheStatueOfLiberty position={[-45, 0.8, 60]}/>
-          <TajMahal position={[-25, 0.8, 60]}/>
-          <SydneyOperaHouse position={[30, 0.8, 60]}/>
-          <Stonehenge position={[0, 0.8, 60]}/>
-          <Pyramid position={[60, 0.8, 40]}/>
-          <OneWorldTradeCenter position={[40, 0.8, 40]}/>
-          <NotreDameDeParis position={[20, 0.8, 40]}/>
-          <MesoamericanPyramid position={[-70, 0.8, 40]}/>
-          <LondonTower position={[-50, 0.8, 40]}/>
-          <FlatironBuilding position={[-35, 0.8, 40]}/>
-          <EmpireState position={[-20, 0.8, 40]}/>
-          <Cristo_Reder position={[0, 0.8, 40]} />
-          <Colosseum position={[70, 0.8, 0]} />
-          <CNTower position={[50, 0.8, 0]}/>
-          <BurjAl_Arab position={[30, 0.8, 0]}/>
-          <Bisa position={[0, 0.8, 0]}/>
-          <BurjKhalifa position={[-80, 0.8, 0]}/>
-          <WhiteHouse position={[-110, 0.8, 0]}/>
-          <ArcDeTriomphe position={[-40, 0.8, 0]}/>
-          <EifelTower position={[-20, 0.5, 0]}/>
-          <BigBen position={[-60, 0.5, 0]} visible={true} />
+        <group position={[0, 0, 0]} ref={spinRef}>
+          <Locations />
           <Ground changeLocation={changeLocation}/>
         </group>
-
         <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} celcius={celcius} location={location}/>       
-
         {/* BUTTONS */}
         <group position={[30, 8, 90]} rotation={[0, -0.3, 0]}>
             
