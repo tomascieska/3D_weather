@@ -2,10 +2,11 @@
 /* eslint-disable react/no-unknown-property */
 // import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import { useEffect, useState, useRef } from "react"
-import { CameraControls} from "@react-three/drei"
+import { CameraControls, Sky} from "@react-three/drei"
 import { useSpring, animated, config } from '@react-spring/three'
 import { DirectionArrow } from './DirectionArrow'
 import { degToRad } from "three/src/math/MathUtils"
+import { useFrame } from "@react-three/fiber"
 
 import Screen from "./Screen"
 import Lights from "./Lights"
@@ -25,7 +26,6 @@ const MainScene = ({weatherData, changeLocation}) => {
     const meshFitCameraRef = useRef()
     const controls = useRef()
     const spinRef = useRef()
-
 
     // useFrame(() => {
     //   spinRef.current.rotation.y += 0.002
@@ -50,7 +50,7 @@ async function checkLocation(){
 
     meshFitCameraRef.current.position.y = 21
     meshFitCameraRef.current.position.x = 10
-    meshFitCameraRef.current.position.z = 110
+    meshFitCameraRef.current.position.z = 210
     fitCamera()
     return changeLocation("Paris")
     }
@@ -60,7 +60,7 @@ async function checkLocation(){
   ){
     meshFitCameraRef.current.position.y = 14
     meshFitCameraRef.current.position.x = 6
-    meshFitCameraRef.current.position.z = 100
+    meshFitCameraRef.current.position.z = 250
     fitCamera()
      return changeLocation("London")
     }
@@ -133,11 +133,11 @@ const fitCamera = async () => {
     <group>
         <CameraControls ref={controls}/>
 
-        <mesh ref={meshFitCameraRef} position={[18, 15, 95]}>
+        <mesh ref={meshFitCameraRef} position={[18, 15, 215]}>
             <boxGeometry args={[22, 8, 10]}/>
             <meshBasicMaterial transparent opacity={0.8} visible={false} color={"orange"} />
         </mesh>
-
+        <Sky />
         <CloudSky celcius={celcius}/>
         <Lights />
 
@@ -147,7 +147,7 @@ const fitCamera = async () => {
         </group>
         <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} celcius={celcius} location={location}/>       
         {/* BUTTONS */}
-        <group position={[30, 8, 90]} rotation={[0, -0.3, 0]}>
+        <group position={[30, 8, 200]} rotation={[0, -0.3, 0]}>
             
           <animated.group scale={sizeLeft}>
               <DirectionArrow rotation={[-Math.PI/2, 0, 0]} position-x={3} onClick={() => moveRight()} />

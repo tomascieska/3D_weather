@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function LondonTower(props) {
   const { nodes, materials } = useGLTF('/models/London_Tower.glb')
   return (
-    <group scale={2} {...props} dispose={null}>
+    <group scale={4} rotation={[0, -Math.PI /2, 0]} {...props} dispose={null}>
       <group name="Scene">
         <mesh name="pCube175_London_Tower_Bridge_0" castShadow receiveShadow geometry={nodes.pCube175_London_Tower_Bridge_0.geometry} material={materials.London_Tower_Bridge} position={[0, 0.598, 0]} rotation={[Math.PI, 1.461, -Math.PI]} scale={[0.047, 0.006, 0.249]} />
       </group>

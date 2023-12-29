@@ -11,15 +11,39 @@ const Ground = () => {
   ])
 
   const [colorMapRing, displacementMap, normalMap, roughnessMapRing, aoMap] = useLoader(TextureLoader, [
-    '/img/flat-cobble-moss-albedo.png',
-    '/img/flat-cobble-moss-height.png',
-    '/img/flat-cobble-moss-normal-ogl.png',
-    '/img/flat-cobble-moss-roughness.png',
-    '/img/flat-cobble-moss-ao.png',
+    // '/img/flat-cobble-moss-albedo.png',
+    // '/img/flat-cobble-moss-height.png',
+    // '/img/flat-cobble-moss-normal-ogl.png',
+    // '/img/flat-cobble-moss-roughness.png',
+    // '/img/flat-cobble-moss-ao.png',
+
+    // '/img/sandyground1_Base_Color.png',
+    // '/img/sandyground1_Height.png',
+    // '/img/sandyground1_Normal.png',
+    // '/img/sandyground1_Roughness.png',
+    // '/img/sandyground1_Ambient_Occlusion.png',
+
+    // '/img/pebbled_asphalt_albedo.png',
+    // '/img/pebbled_asphalt_Height.png',
+    // '/img/pebbled_asphalt_Normal.png',
+    // '/img/pebbled_asphalt_Roughness.png',
+    // '/img/pebbled_asphalt_ao.png',
+
+    // '/img/green-shower-tile1_albedo.png',
+    // '/img/green-shower-tile1_height.png',
+    // '/img/green-shower-tile1_normal-ogl.png',
+    // '/img/green-shower-tile1_roughness.png',
+    // '/img/green-shower-tile1_albedo.png',
+
+    '/img/dungeon-stone1-albedo2.png',
+    '/img/dungeon-stone1-height.png',
+    '/img/dungeon-stone1-normal.png',
+    '/img/dungeon-stone1-roughness.png',
+    '/img/dungeon-stone1-ao.png',
   ])
   
-const x = 30
-const y = 30
+const x = 15
+const y = 10
 
   colorMapRing.repeat.set(x, y);
   colorMapRing.wrapS = colorMapRing.wrapT = RepeatWrapping;
@@ -39,14 +63,14 @@ const y = 30
   return (
 <group>
     <mesh position={[0, 0.3, 0]} rotation={[-Math.PI/2, 0, 0]}>
-      <ringGeometry args={[160, 220, 100, 0]}/>
+      <ringGeometry args={[150, 220, 100, 0]}/>
       <meshStandardMaterial 
         map={colorMapRing}
         normalMap={normalMap}
         roughnessMap={roughnessMapRing}
         aoMap={aoMap}
         displacementMap={displacementMap}
-        displacementScale={1}
+        displacementScale={0.2}
       />
     </mesh>
 

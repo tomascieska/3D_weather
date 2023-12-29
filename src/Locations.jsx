@@ -39,23 +39,18 @@ const Locations = () => {
     const numberOfObjects = 15
 
   return (
-    <group >
-
-        <mesh >
-            <boxGeometry args={[5,5,5]} />
-            <meshPhongMaterial color={"red"} />
-        </mesh>
+<group>
 
 {/* UK */}
-<group>
+
 
         <LondonTower 
             position={[
-                R * Math.cos( (Math.PI * 2 * 1) / numberOfObjects),
+                -20 + R * Math.cos( (Math.PI * 2 * 0.9) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 1) / numberOfObjects),
+                -25 + R * Math.sin( (Math.PI * 2 * 0.9) / numberOfObjects),
             ]}/>
-</group>
+
 
         <BigBen
             position={[
