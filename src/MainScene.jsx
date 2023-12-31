@@ -12,6 +12,7 @@ import Lights from "./Lights"
 import Ground from "./Ground"
 import CloudSky from "./CloudSky"
 import Locations from "./Locations"
+import { useFrame } from "@react-three/fiber"
 
 
 const MainScene = ({weatherData, changeLocation}) => {
@@ -33,6 +34,7 @@ const MainScene = ({weatherData, changeLocation}) => {
 //ROTATE WORLD
 
     function moveRight() {
+
       setRightBtn(true)
       setLeftBtn(false)
       spinRef.current.rotation.y += degToRad(24)
@@ -44,10 +46,15 @@ const MainScene = ({weatherData, changeLocation}) => {
       setRightBtn(false)
       setLeftBtn(true)
       spinRef.current.rotation.y -= degToRad(24)
-      // Math.PI / 7.5
       checkLocation()
       console.log("move right left" + Math.round(radToDeg(spinRef.current.rotation.y))  +"  ------  "+ -24)
     }
+ 
+    // useFrame(() => {
+    //   controls.current.position.x += 200 * Math.cos( (Math.PI * 2) / 14)
+    //   controls.current.position.z += 200 * Math.sin( (Math.PI * 2) / 14)
+    //   fitCamera()
+    // })
 
 // CHECK LOCATION
 async function checkLocation(){
@@ -105,9 +112,29 @@ async function checkLocation(){
       return changeLocation("Toronto")
     } 
 
-    if(currentRotationY === -192){
+    if(currentRotationY === -216){
       return changeLocation("Sydney")
-    }     
+    }
+    
+    if(currentRotationY === -240){
+      return changeLocation("Tokyo")
+    } 
+
+    if(currentRotationY === -264){
+      return changeLocation("Agra")
+    }
+    
+    if(currentRotationY === -288){
+      return changeLocation("Dubai")
+    }
+
+    if(currentRotationY === -312){
+      return changeLocation("Pisa")
+    }
+
+    if(currentRotationY === -336){
+      return changeLocation("Rome")
+    }    
 
 }
 
