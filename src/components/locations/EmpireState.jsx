@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function EmpireState(props) {
   const { nodes, materials } = useGLTF('/models/Empire_State.glb')
   return (
-    <group {...props} dispose={null}>
+    <group scale={1.2} rotation={[0, - Math.PI, 0]} {...props} dispose={null}>
       <group name="Scene">
         <mesh name="Empire_State_Building_empire_state_building_0" castShadow receiveShadow geometry={nodes.Empire_State_Building_empire_state_building_0.geometry} material={materials.empire_state_building} scale={0.03} />
         <mesh name="Empire_State_Building_glass_2_0" castShadow receiveShadow geometry={nodes.Empire_State_Building_glass_2_0.geometry} material={materials.glass_2} scale={0.01} />

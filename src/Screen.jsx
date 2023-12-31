@@ -29,8 +29,8 @@ const Screen = ({ data}) => {
   >
 
         <mesh >
-            <boxGeometry args={[30, 25, 1]}/>
-            <meshBasicMaterial transparent opacity={0.2} visible={true} color={"white"} />
+            <boxGeometry args={[30, 30, 1]}/>
+            <meshBasicMaterial transparent opacity={0.5} visible={true} color={"white"} />
         </mesh>
 
     <mesh position={[-12, 8, 1]} castShadow receiveShadow >

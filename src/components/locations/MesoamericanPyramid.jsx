@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function MesoamericanPyramid(props) {
   const { nodes, materials } = useGLTF('/models/Mesoamerican_Pyramid.glb')
   return (
-    <group {...props} dispose={null}>
+    <group scale={4}{...props} rotation={[0, - Math.PI / 9, 0]} {...props} dispose={null}>
       <group name="Scene">
         <mesh name="Mesoamerican_pyramid_Mesoamerican_pyramid_0" castShadow receiveShadow geometry={nodes.Mesoamerican_pyramid_Mesoamerican_pyramid_0.geometry} material={materials.Mesoamerican_pyramid} rotation={[-Math.PI / 2, 0, 0]} scale={0.012} />
       </group>

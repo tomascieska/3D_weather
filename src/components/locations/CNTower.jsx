@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function CNTower(props) {
   const { nodes, materials } = useGLTF('/models/CN_Tower.glb')
   return (
-    <group {...props} dispose={null}>
+    <group scale={1.1}{...props} dispose={null}>
       <group name="Scene">
         <mesh name="di_ban_ground_cn_tower_0" castShadow receiveShadow geometry={nodes.di_ban_ground_cn_tower_0.geometry} material={materials.ground_cn_tower} rotation={[-Math.PI / 2, 0, -2.26]} scale={0.03} />
         <mesh name="dian_shi_tai_cn_tower_0" castShadow receiveShadow geometry={nodes.dian_shi_tai_cn_tower_0.geometry} material={materials.cn_tower} position={[0, 0.042, 0]} rotation={[-Math.PI / 2, 0, -2.26]} scale={0.03} />

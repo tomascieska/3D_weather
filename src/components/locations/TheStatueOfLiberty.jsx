@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function TheStatueOfLiberty(props) {
   const { nodes, materials } = useGLTF('/models/The_Statue_of_Liberty.glb')
   return (
-    <group scale={2} {...props} dispose={null}>
+    <group scale={2}{...props} rotation={[0, - Math.PI, 0]} {...props} dispose={null}>
       <group name="Scene">
         <mesh name="base1_base_0" castShadow receiveShadow geometry={nodes.base1_base_0.geometry} material={materials.base} position={[0, 2.238, 0]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={0.01} />
         <mesh name="robe_role_0" castShadow receiveShadow geometry={nodes.robe_role_0.geometry} material={materials.role} position={[0, 5.91, 0]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]} scale={0.01} />

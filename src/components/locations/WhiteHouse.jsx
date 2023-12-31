@@ -11,12 +11,12 @@ import { useGLTF } from '@react-three/drei'
 export function WhiteHouse(props) {
   const { nodes, materials } = useGLTF('/models/White_House.glb')
   return (
-    <group  {...props} dispose={null}>
+    <group scale={2}{...props} rotation={[0, - Math.PI / 1.3 , 0]} {...props} dispose={null}>
       <group name="Scene">
-        <mesh name="White_House_white_hosue_bo_li_0" castShadow receiveShadow geometry={nodes.White_House_white_hosue_bo_li_0.geometry} material={materials.white_hosue_bo_li} rotation={[-Math.PI / 2, 0, 0]} scale={0.035} />
-        <mesh name="White_House_white_house_default_0" castShadow receiveShadow geometry={nodes.White_House_white_house_default_0.geometry} material={materials.white_house_default} rotation={[-Math.PI / 2, 0, 0]} scale={0.035} />
-        <mesh name="White_House_white_house_zhu_ti_0" castShadow receiveShadow geometry={nodes.White_House_white_house_zhu_ti_0.geometry} material={materials.white_house_zhu_ti} rotation={[-Math.PI / 2, 0, 0]} scale={0.035} />
-        <mesh name="White_House_white_house_zhu_zi_0" castShadow receiveShadow geometry={nodes.White_House_white_house_zhu_zi_0.geometry} material={materials.white_house_zhu_zi} rotation={[-Math.PI / 2, 0, 0]} scale={0.035} />
+        <mesh name="White_House_white_hosue_bo_li_0" castShadow receiveShadow geometry={nodes.White_House_white_hosue_bo_li_0.geometry} material-color="blue" material={materials.white_hosue_bo_li} rotation={[-Math.PI / 2, 0, 0]} scale={0.01} />
+        <mesh name="White_House_white_house_default_0" castShadow receiveShadow geometry={nodes.White_House_white_house_default_0.geometry} material={materials.white_house_default} rotation={[-Math.PI / 2, 0, 0]} scale={0.01} />
+        <mesh name="White_House_white_house_zhu_ti_0" castShadow receiveShadow geometry={nodes.White_House_white_house_zhu_ti_0.geometry} material={materials.white_house_zhu_ti} rotation={[-Math.PI / 2, 0, 0]} scale={0.01} />
+        <mesh name="White_House_white_house_zhu_zi_0" castShadow receiveShadow geometry={nodes.White_House_white_house_zhu_zi_0.geometry} material={materials.white_house_zhu_zi} rotation={[-Math.PI / 2, 0, 0]} scale={0.01} />
       </group>
     </group>
   )

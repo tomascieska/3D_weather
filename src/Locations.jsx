@@ -24,8 +24,6 @@ import { FlatironBuilding } from "./components/locations/FlatironBuilding"
 import { Cristo_Reder } from "./components/locations/CristoReder"
 import { MesoamericanPyramid } from "./components/locations/MesoamericanPyramid"
 import { Pyramid } from "./components/locations/Pyramid"
-import { useFrame } from "@react-three/fiber"
-import { useRef } from "react"
 
 // const angle = (Math.PI * 2 * i) / numberOfObjects; // Calculate the angle for each object
 
@@ -46,17 +44,17 @@ const Locations = () => {
 
         <LondonTower 
             position={[
-                -20 + R * Math.cos( (Math.PI * 2 * 0.9) / numberOfObjects),
+                R * Math.cos( (Math.PI * 2 * 0.9) / numberOfObjects),
                 0.8,
-                -25 + R * Math.sin( (Math.PI * 2 * 0.9) / numberOfObjects),
+                (R - 15 )* Math.sin( (Math.PI * 2 * 0.9) / numberOfObjects),
             ]}/>
 
 
         <BigBen
             position={[
-                R * Math.cos( (Math.PI * 2 * 1) / numberOfObjects),
+                R * Math.cos( (Math.PI * 2 * 0.5) / numberOfObjects),
                 0,
-                R * Math.sin( (Math.PI * 2 * 1) / numberOfObjects),
+                R * Math.sin( (Math.PI * 2 * 0.5) / numberOfObjects),
             ]}/>
 
         <Stonehenge 
@@ -167,16 +165,16 @@ const Locations = () => {
 {/* NEW YORK */}
         <TheStatueOfLiberty
             position={[
-                R * Math.cos( (Math.PI * 2 * 12) / numberOfObjects),
+                R * Math.cos( (Math.PI * 2 * 11.9) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 12) / numberOfObjects),
+                -10 + R * Math.sin( (Math.PI * 2 * 11.9) / numberOfObjects),
                 ]}/>
 
         <OneWorldTradeCenter
             position={[
                 R * Math.cos( (Math.PI * 2 * 12) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 12) / numberOfObjects),
+                (R - 22) * Math.sin( (Math.PI * 2 * 12) / numberOfObjects),
                 ]}/>
 
         <EmpireState
@@ -187,9 +185,9 @@ const Locations = () => {
                 ]}/>
         <FlatironBuilding
             position={[
-                R * Math.cos( (Math.PI * 2 * 12) / numberOfObjects),
+                R * Math.cos( (Math.PI * 2 * 11.95) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 12) / numberOfObjects),
+                R * Math.sin( (Math.PI * 2 * 12.1) / numberOfObjects),
                 ]}/>
 
 {/* BRAZIL */}
@@ -203,18 +201,18 @@ const Locations = () => {
 {/* MEXICO */}
         <MesoamericanPyramid
             position={[
-                R * Math.cos( (Math.PI * 2 * 14) / numberOfObjects),
+                (R - 12 ) * Math.cos( (Math.PI * 2 * 13.8) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 14) / numberOfObjects),
+                (R - 40 ) * Math.sin( (Math.PI * 2 * 13.8) / numberOfObjects),
                 ]}/>
 
 
 {/* EGYPT */}
         <Pyramid 
             position={[
-                R * Math.cos( (Math.PI * 2 * 15) / numberOfObjects),
+                R * Math.cos( (Math.PI * 2 * 14) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 15) / numberOfObjects),
+                (R - 40 ) * Math.sin( (Math.PI * 2 * 15) / numberOfObjects),
                 ]}/>
     </group>
   )

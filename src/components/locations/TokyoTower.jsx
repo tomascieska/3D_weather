@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function TokyoTower(props) {
   const { nodes, materials } = useGLTF('/models/Tokyo_Tower.glb')
   return (
-    <group scale={2}{...props} dispose={null}>
+    <group scale={4} rotation={[0,  - Math.PI / 3, 0]} {...props} dispose={null}>
       <group name="Scene">
         <mesh name="Tokyo_Tower_Tokyo_Tower_0" castShadow receiveShadow geometry={nodes.Tokyo_Tower_Tokyo_Tower_0.geometry} material={materials.Tokyo_Tower} position={[0, 4.003, 0]} rotation={[-Math.PI / 2, 0, 1.562]} scale={[0.045, 0.044, 0.044]} />
       </group>

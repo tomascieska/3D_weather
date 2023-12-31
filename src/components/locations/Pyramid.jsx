@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function Pyramid(props) {
   const { nodes, materials } = useGLTF('/models/Pyramid.glb')
   return (
-    <group {...props} dispose={null}>
+    <group scale={3}{...props} rotation={[0, - Math.PI / 9, 0]} dispose={null}>
       <group name="Scene">
         <mesh name="men_dimo__1_pyramid_0" castShadow receiveShadow geometry={nodes.men_dimo__1_pyramid_0.geometry} material={materials['1_pyramid']} position={[0, 0.508, -2.978]} rotation={[-Math.PI / 2, 0, -Math.PI]} scale={0.02} />
         <mesh name="ta_dimo__2_pyramid_0" castShadow receiveShadow geometry={nodes.ta_dimo__2_pyramid_0.geometry} material={materials['2_pyramid']} position={[-0.07, 2.034, 0.07]} rotation={[-Math.PI / 2, 0, -Math.PI]} scale={0.02} />

@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function BigBen(props) {
   const { nodes, materials } = useGLTF('/models/BigBen.glb')
   return (
-    <group rotation={[0, -Math.PI /2, 0]} {...props} dispose={null}>
+    <group rotation={[0, - Math.PI / 1.1, 0]} {...props} dispose={null}>
       <group name="Scene">
         <mesh name="Big_Ben_big_ben_0" castShadow receiveShadow geometry={nodes.Big_Ben_big_ben_0.geometry} material={materials.big_ben} position={[1.966, 30, 1.966]} rotation={[-Math.PI / 2, 0, 0]} scale={0.15} />
       </group>

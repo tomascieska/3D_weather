@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function SydneyOperaHouse(props) {
   const { nodes, materials } = useGLTF('/models/Sydney_Opera_House.glb')
   return (
-    <group scale={3}{...props} dispose={null}>
+    <group scale={4} rotation={[0,  - Math.PI / 3, 0]} {...props} dispose={null}>
       <group name="Scene">
         <mesh name="_002__4_Sydney_Opera_House_0" castShadow receiveShadow geometry={nodes._002__4_Sydney_Opera_House_0.geometry} material={materials['4_Sydney_Opera_House']} position={[1.803, 1.291, 1.543]} rotation={[-Math.PI / 2, 0, 1.451]} scale={0.008} />
         <mesh name="_015__1_Sydney_Opera_House_0" castShadow receiveShadow geometry={nodes._015__1_Sydney_Opera_House_0.geometry} material={materials['1_Sydney_Opera_House']} position={[-0.236, 1.028, -0.11]} rotation={[-Math.PI / 2, 0, 1.78]} scale={[0.008, 0.009, 0.008]} />

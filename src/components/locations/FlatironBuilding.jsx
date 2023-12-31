@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function FlatironBuilding(props) {
   const { nodes, materials } = useGLTF('/models/Flatiron_Building.glb')
   return (
-    <group {...props} dispose={null}>
+    <group scale={1.2} rotation={[0, -Math.PI / 2.5, 0]}{...props} dispose={null}>
       <group name="Scene">
         <mesh name="bo_li_1_glass_1_0" castShadow receiveShadow geometry={nodes.bo_li_1_glass_1_0.geometry} material={materials.glass_1} rotation={[-Math.PI / 2, 0, 1.721]} scale={0.02} />
         <mesh name="yun_dou_Flatiron_Building_0" castShadow receiveShadow geometry={nodes.yun_dou_Flatiron_Building_0.geometry} material={materials.Flatiron_Building} rotation={[-Math.PI / 2, 0, 1.721]} scale={0.02} />

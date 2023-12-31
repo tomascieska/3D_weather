@@ -66,73 +66,124 @@ async function checkLocation(){
   if(currentRotationY >= 360){
      currentRotationY = 0
   }
-
   if(currentRotationY === 0){
-
-    // meshFitCameraRef.current.position.y = 21
-    // meshFitCameraRef.current.position.x = 10
-    // meshFitCameraRef.current.position.z = 210
+    meshFitCameraRef.current.position.x = 0
+    meshFitCameraRef.current.position.y = 0
+    meshFitCameraRef.current.position.z = 8
     fitCamera()
     return changeLocation("Paris")
     }
 
-  if(currentRotationY === -24){
+  if(currentRotationY === -24 ||
+      currentRotationY === 24){
     meshFitCameraRef.current.position.x = 0
     meshFitCameraRef.current.position.y = -5
     meshFitCameraRef.current.position.z = -15
-    controls.current.rotate(0.2, 0, 0) 
      fitCamera()
      return changeLocation("Salisbury")
     }
 
-  if(currentRotationY === -48){
+  if(currentRotationY === -48 ||
+      currentRotationY === 312){
+    meshFitCameraRef.current.position.x = 10
+    meshFitCameraRef.current.position.y = -5
+    meshFitCameraRef.current.position.z = -5
+    fitCamera()
      return changeLocation("London")
     }
 
-    if(currentRotationY === -72){
+    if(currentRotationY === -72 ||
+        currentRotationY === 288){
+      meshFitCameraRef.current.position.x = 1
+      meshFitCameraRef.current.position.y = -1
+      meshFitCameraRef.current.position.z = -15
+      fitCamera()
       return changeLocation("Giza")
     } 
 
-    if(currentRotationY === -96){
+    if(currentRotationY === -96 ||
+        currentRotationY === 264){
+      meshFitCameraRef.current.position.x = 10
+      meshFitCameraRef.current.position.y = 2
+      meshFitCameraRef.current.position.z = 0
+      fitCamera()            
       return changeLocation("Mexico City")
     }
-    if(currentRotationY === -120){
+    if(currentRotationY === -120 ||
+        currentRotationY === 240){
+      meshFitCameraRef.current.position.x = 8
+      meshFitCameraRef.current.position.y = 10
+      meshFitCameraRef.current.position.z = -10
+      fitCamera()
       return changeLocation("Rio de Janeiro")
     } 
 
-    if(currentRotationY === -144){
+    if(currentRotationY === -144 ||
+        currentRotationY === 216){
+      meshFitCameraRef.current.position.x = 10
+      meshFitCameraRef.current.position.y = 1
+      meshFitCameraRef.current.position.z = -10
+      fitCamera()
       return changeLocation("New York")
     } 
 
-    if(currentRotationY === -168){
+    if(currentRotationY === -168 ||
+        currentRotationY === 192){
+      meshFitCameraRef.current.position.x = 2
+      meshFitCameraRef.current.position.y = -4
+      meshFitCameraRef.current.position.z = -10
+      fitCamera()
       return changeLocation("Washington")
     } 
 
-    if(currentRotationY === -192){
+    if(currentRotationY === -192 ||
+        currentRotationY === 168){
+      meshFitCameraRef.current.position.x = 10
+      meshFitCameraRef.current.position.y = 2
+      meshFitCameraRef.current.position.z = -10
+      fitCamera()
       return changeLocation("Toronto")
     } 
 
-    if(currentRotationY === -216){
+    if(currentRotationY === -216 ||
+        currentRotationY === 144){
+      meshFitCameraRef.current.position.x = 5
+      meshFitCameraRef.current.position.y = -3
+      meshFitCameraRef.current.position.z = -15
+      fitCamera()
       return changeLocation("Sydney")
     }
     
-    if(currentRotationY === -240){
+    if(currentRotationY === -240 ||
+        currentRotationY === 120){
+      meshFitCameraRef.current.position.x = 5
+      meshFitCameraRef.current.position.y = 3
+      meshFitCameraRef.current.position.z = -10
+      fitCamera()        
       return changeLocation("Tokyo")
     } 
 
-    if(currentRotationY === -264){
+    if(currentRotationY === -264 ||
+        currentRotationY === 96){
+      meshFitCameraRef.current.position.x = 5
+      meshFitCameraRef.current.position.y = 3
+      meshFitCameraRef.current.position.z = -10
+      fitCamera() 
       return changeLocation("Agra")
     }
     
-    if(currentRotationY === -288){
+    if(currentRotationY === -288 ||
+      currentRotationY === 72){
       return changeLocation("Dubai")
     }
 
-    if(currentRotationY === -312){
+    if(currentRotationY === -312 ||
+      currentRotationY === 48){
       return changeLocation("Pisa")
     }
 
-    if(currentRotationY === -336){
+    if(currentRotationY === -336 ||
+      currentRotationY === 24){
       return changeLocation("Rome")
     }    
 
@@ -178,7 +229,7 @@ const fitCamera = async () => {
 
         <mesh ref={meshFitCameraRef}>
             <boxGeometry args={[30, 15, 1]}/>
-            <meshBasicMaterial transparent opacity={0.5} visible={false} color={"orange"} />
+            <meshBasicMaterial transparent opacity={0.2} visible={false} color={"orange"} />
         </mesh>
 
         {/* BUTTONS */}
@@ -187,10 +238,10 @@ const fitCamera = async () => {
 
           <group scale={2} position={[-5, -6, 1]}>
             <animated.group scale={sizeLeft}>
-              <DirectionArrow rotation={[-Math.PI/2, 0, 0]} position-x={3} onClick={() => moveRight()} />
+              <DirectionArrow rotation={[-Math.PI/2, 0, 0]} position-x={3} onClick={() => moveLeft()} />
             </animated.group>
             <animated.group scale={sizeRight}>
-              <DirectionArrow rotation={[Math.PI/2, 0, -Math.PI]} onClick={() => moveLeft()} />
+              <DirectionArrow rotation={[Math.PI/2, 0, -Math.PI]} onClick={() => moveRight()} />
             </animated.group>
           </group>    
         </group>

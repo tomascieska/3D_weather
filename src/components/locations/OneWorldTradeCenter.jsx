@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function OneWorldTradeCenter(props) {
   const { nodes, materials } = useGLTF('/models/One_World_Trade_Center.glb')
   return (
-    <group {...props} dispose={null}>
+    <group scale={3}{...props} rotation={[0, - Math.PI, 0]} {...props} dispose={null}>
       <group name="Scene">
         <mesh name="bo_li_glass_0_0" castShadow receiveShadow geometry={nodes.bo_li_glass_0_0.geometry} material={materials.glass_0} position={[0.009, -0.01, -0.008]} rotation={[-Math.PI / 2, 0, -1.311]} scale={1} />
         <mesh name="shi_mao_zhong_xin_One_World_Trade_Center_0" castShadow receiveShadow geometry={nodes.shi_mao_zhong_xin_One_World_Trade_Center_0.geometry} material={materials.One_World_Trade_Center} position={[0.009, -0.01, -0.008]} rotation={[-Math.PI / 2, 0, -1.311]} scale={1} />
