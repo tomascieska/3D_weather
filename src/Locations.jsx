@@ -103,16 +103,16 @@ const Locations = () => {
 {/* DUBAI */}
         <BurjKhalifa
             position={[
-                R * Math.cos( (Math.PI * 2 * 6) / numberOfObjects),
+                (R - 10 ) * Math.cos( (Math.PI * 2 * 6.2) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 6) / numberOfObjects),
+                (R - 10 ) * Math.sin( (Math.PI * 2 * 6.2) / numberOfObjects),
                 ]}/>
 
         <BurjAl_Arab
             position={[
-                R * Math.cos( (Math.PI * 2 * 6) / numberOfObjects),
+                4 + R * Math.cos( (Math.PI * 2 * 6) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 6) / numberOfObjects),
+                4 + R * Math.sin( (Math.PI * 2 * 6) / numberOfObjects),
                 ]}/>
 {/* DELI */}
         <TajMahal 

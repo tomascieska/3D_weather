@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function BurjAl_Arab(props) {
   const { nodes, materials } = useGLTF('/models/BurjAl_Arab.glb')
   return (
-    <group {...props} dispose={null}>
+    <group scale={0.5} rotation={[0, - Math.PI /4, 0]} {...props} dispose={null}>
       <group name="Scene">
           <mesh name="Arc06__5_Burj_Al_Arab_Hotel_0" castShadow receiveShadow geometry={nodes.Arc06__5_Burj_Al_Arab_Hotel_0.geometry} material={materials['5_Burj_Al_Arab_Hotel']} position={[0.032, 21.107, 0.12]} rotation={[Math.PI, -0.064, Math.PI]} scale={[-0.04, 0.04, 0.04]} />
           <mesh name="Line01__7_Burj_Al_Arab_Hotel_0" castShadow receiveShadow geometry={nodes.Line01__7_Burj_Al_Arab_Hotel_0.geometry} material={materials['7_Burj_Al_Arab_Hotel']} position={[-0.53, 15.4, 0.8]} rotation={[-Math.PI / 2, 0, 3.056]} scale={0.04} />

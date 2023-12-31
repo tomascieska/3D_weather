@@ -32,22 +32,34 @@ const MainScene = ({weatherData, changeLocation}) => {
   },[])
 
 //ROTATE WORLD
+function resetRotationY(){
+    let currentRotationY = Math.round(radToDeg(spinRef.current.rotation.y))
+        if(currentRotationY === -360){
+          spinRef.current.rotation.y = 0
+          console.log(currentRotationY)
+          console.log("yes")
+        }
+        if(currentRotationY === 360){
+          spinRef.current.rotation.y = 0
+        }
+}
 
     function moveRight() {
-
+      resetRotationY()
       setRightBtn(true)
       setLeftBtn(false)
       spinRef.current.rotation.y += degToRad(24)
       checkLocation()
-      console.log("move right position" + radToDeg(spinRef.current.rotation.y))
+      console.log("move right position" + Math.round(radToDeg(spinRef.current.rotation.y)))
     }
     
     function moveLeft() {
+      resetRotationY()
       setRightBtn(false)
       setLeftBtn(true)
       spinRef.current.rotation.y -= degToRad(24)
       checkLocation()
-      console.log("move right left" + Math.round(radToDeg(spinRef.current.rotation.y))  +"  ------  "+ -24)
+      console.log("move right left" + Math.round(radToDeg(spinRef.current.rotation.y)))
     }
  
     // useFrame(() => {
@@ -60,8 +72,10 @@ const MainScene = ({weatherData, changeLocation}) => {
 async function checkLocation(){
   let currentRotationY = Math.round(radToDeg(spinRef.current.rotation.y))
 
-  if(currentRotationY <= -360){
-     currentRotationY = 0
+  if(currentRotationY === -360){
+    currentRotationY = 0
+    console.log(currentRotationY)
+    console.log("yes")
   }
   if(currentRotationY >= 360){
      currentRotationY = 0
@@ -75,7 +89,7 @@ async function checkLocation(){
     }
 
   if(currentRotationY === -24 ||
-      currentRotationY === 24){
+    currentRotationY === 336){
     meshFitCameraRef.current.position.x = 0
     meshFitCameraRef.current.position.y = -5
     meshFitCameraRef.current.position.z = -15
@@ -166,24 +180,36 @@ async function checkLocation(){
     if(currentRotationY === -264 ||
         currentRotationY === 96){
       meshFitCameraRef.current.position.x = 5
-      meshFitCameraRef.current.position.y = 3
+      meshFitCameraRef.current.position.y = -3
       meshFitCameraRef.current.position.z = -10
       fitCamera() 
       return changeLocation("Agra")
     }
     
     if(currentRotationY === -288 ||
-      currentRotationY === 72){
+        currentRotationY === 72){
+      meshFitCameraRef.current.position.x = 2
+      meshFitCameraRef.current.position.y = 9
+      meshFitCameraRef.current.position.z = -9
+      fitCamera() 
       return changeLocation("Dubai")
     }
 
     if(currentRotationY === -312 ||
-      currentRotationY === 48){
+        currentRotationY === 48){
+      meshFitCameraRef.current.position.x = 10
+      meshFitCameraRef.current.position.y = 0
+      meshFitCameraRef.current.position.z = -5
+      fitCamera()         
       return changeLocation("Pisa")
     }
 
-    if(currentRotationY === -336 ||
-      currentRotationY === 24){
+    if(currentRotationY === 24 ||
+      currentRotationY === -336){
+      meshFitCameraRef.current.position.x = 0
+      meshFitCameraRef.current.position.y = 5
+      meshFitCameraRef.current.position.z = -10
+      fitCamera()      
       return changeLocation("Rome")
     }    
 
