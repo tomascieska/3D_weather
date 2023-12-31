@@ -6,7 +6,6 @@ import { CameraControls, Sky} from "@react-three/drei"
 import { useSpring, animated, config } from '@react-spring/three'
 import { DirectionArrow } from './DirectionArrow'
 import { degToRad, radToDeg } from "three/src/math/MathUtils"
-import { useFrame } from "@react-three/fiber"
 
 import Screen from "./Screen"
 import Lights from "./Lights"
@@ -21,32 +20,47 @@ const MainScene = ({weatherData, changeLocation}) => {
     const [location, setLocation] = useState()
     const [rightBtn, setRightBtn] = useState(false)
     const [leftBtn, setLeftBtn] = useState(false)
-    const [currentRotation, setCurrentRotation] = useState()
 
     const meshFitCameraRef = useRef()
     const controls = useRef()
     const spinRef = useRef()
-
-    // useFrame(() => {
-    //   spinRef.current.rotation.y -= 0.005
-      
-    // })
-    
+   
     useEffect(() => {
       setCelcius(weatherData.current.feelslike_c)
       setLocation(weatherData.location.name)
   },[])
+
+//ROTATE WORLD
+
+    function moveRight() {
+      setRightBtn(true)
+      setLeftBtn(false)
+      spinRef.current.rotation.y += degToRad(24)
+      checkLocation()
+      console.log("move right position" + radToDeg(spinRef.current.rotation.y))
+    }
     
-  // LOCATION CHECKING
+    function moveLeft() {
+      setRightBtn(false)
+      setLeftBtn(true)
+      spinRef.current.rotation.y -= degToRad(24)
+      // Math.PI / 7.5
+      checkLocation()
+      console.log("move right left" + Math.round(radToDeg(spinRef.current.rotation.y))  +"  ------  "+ -24)
+    }
+
+// CHECK LOCATION
 async function checkLocation(){
-  
-  if(spinRef.current.rotation.y <= degToRad(-360)){
-    spinRef.current.rotation.y = 0
+  let currentRotationY = Math.round(radToDeg(spinRef.current.rotation.y))
+
+  if(currentRotationY <= -360){
+     currentRotationY = 0
   }
-  if(spinRef.current.rotation.y >= degToRad(360)){
-    spinRef.current.rotation.y = 0
+  if(currentRotationY >= 360){
+     currentRotationY = 0
   }
-  if(spinRef.current.rotation.y === 0){
+
+  if(currentRotationY === 0){
 
     // meshFitCameraRef.current.position.y = 21
     // meshFitCameraRef.current.position.x = 10
@@ -55,8 +69,7 @@ async function checkLocation(){
     return changeLocation("Paris")
     }
 
-  if(spinRef.current.rotation.y ===  Math.floor(-Math.PI / 7.5) )
-    {
+  if(currentRotationY === -24){
     meshFitCameraRef.current.position.x = 0
     meshFitCameraRef.current.position.y = -5
     meshFitCameraRef.current.position.z = -15
@@ -65,44 +78,45 @@ async function checkLocation(){
      return changeLocation("Salisbury")
     }
 
-  if(spinRef.current.rotation.y === degToRad(-48) ||
-     spinRef.current.rotation.y === degToRad(48)
-  ){
+  if(currentRotationY === -48){
      return changeLocation("London")
     }
 
-    if(spinRef.current.rotation.y === Math.PI / -1.875
-    ){
-      return changeLocation("Egipt")
+    if(currentRotationY === -72){
+      return changeLocation("Giza")
     } 
+
+    if(currentRotationY === -96){
+      return changeLocation("Mexico City")
+    }
+    if(currentRotationY === -120){
+      return changeLocation("Rio de Janeiro")
+    } 
+
+    if(currentRotationY === -144){
+      return changeLocation("New York")
+    } 
+
+    if(currentRotationY === -168){
+      return changeLocation("Washington")
+    } 
+
+    if(currentRotationY === -192){
+      return changeLocation("Toronto")
+    } 
+
+    if(currentRotationY === -192){
+      return changeLocation("Sydney")
+    }     
+
 }
 
-  useEffect(() => {
-    setCurrentRotation(spinRef.current.rotation.y)
-  },[currentRotation]) 
-
+//ANIMATIONS
     const {sizeRight, sizeLeft} = useSpring({
       sizeRight: rightBtn ? 0.9 : 1.2,
       sizeLeft: leftBtn ? 0.9 : 1.2,
       config: config.wobbly,
     })
-
-    function moveRight() {
-      setRightBtn(true)
-      setLeftBtn(false)
-      spinRef.current.rotation.y -=  Math.PI / 7.5
-      checkLocation()
-      console.log("move right position" + radToDeg(spinRef.current.rotation.y))
-      console.log( Math.floor(-Math.PI / 7.5))
-    }
-    
-    function moveLeft() {
-      setRightBtn(false)
-      setLeftBtn(true)
-      spinRef.current.rotation.y += Math.PI / 7.5
-      checkLocation()
-      console.log("move right left" + radToDeg(spinRef.current.rotation.y))
-    }
 
 // CAMERA CONTOLS ########
 const intro = async () => {
@@ -110,7 +124,6 @@ const intro = async () => {
   controls.current.smoothTime = 1
   fitCamera()
 }
-
 
 useEffect(() => {
   intro()

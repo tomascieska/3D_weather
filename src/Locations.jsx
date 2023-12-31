@@ -181,9 +181,9 @@ const Locations = () => {
 
         <EmpireState
             position={[
-                R * Math.cos( (Math.PI * 2 * 12) / numberOfObjects),
+                10 + R * Math.cos( (Math.PI * 2 * 12) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 12) / numberOfObjects),
+                10 + R * Math.sin( (Math.PI * 2 * 12) / numberOfObjects),
                 ]}/>
         <FlatironBuilding
             position={[
