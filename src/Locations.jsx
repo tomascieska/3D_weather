@@ -55,7 +55,7 @@ const Locations = () => {
         <BigBen
             position={[
                 R * Math.cos( (Math.PI * 2 * 1) / numberOfObjects),
-                0.8,
+                0,
                 R * Math.sin( (Math.PI * 2 * 1) / numberOfObjects),
             ]}/>
 
@@ -69,23 +69,23 @@ const Locations = () => {
 {/* FRANCE */}
         <EifelTower
             position={[
-                R * Math.cos( (Math.PI * 2 * 3) / numberOfObjects),
+                R * Math.cos( (Math.PI * 2 * 3.2    ) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 3) / numberOfObjects),
+                R * Math.sin( (Math.PI * 2 * 3.2) / numberOfObjects),
                 ]}/>
 
         <NotreDameDeParis
             position={[
-                R * Math.cos( (Math.PI * 2 * 3) / numberOfObjects),
+                6 + R * Math.cos( (Math.PI * 2 * 3.01) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 3) / numberOfObjects),
+                6 + R * Math.sin( (Math.PI * 2 * 3.01) / numberOfObjects),
                 ]}/>
 
         <ArcDeTriomphe
             position={[
-                R * Math.cos( (Math.PI * 2 * 3) / numberOfObjects),
+                R * Math.cos( (Math.PI * 2 * 2.9) / numberOfObjects),
                 0.8,
-                R * Math.sin( (Math.PI * 2 * 3) / numberOfObjects),
+                R * Math.sin( (Math.PI * 2 * 2.9) / numberOfObjects),
                 ]}/>
 
 {/* ROME */}

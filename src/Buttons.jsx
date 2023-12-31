@@ -18,14 +18,14 @@ const Buttons = ({spinRef, changeLocation, }) => {
     function moveRight() {
         setRightBtn(true)
         setLeftBtn(false)
-        spinRef.current.rotation.y += degToRad(-90)
+        spinRef.current.rotation.y += degToRad(-10)
         checkLocation()
       }
       
       function moveLeft() {
         setRightBtn(false)
         setLeftBtn(true)
-        spinRef.current.rotation.y -= degToRad(-90)
+        spinRef.current.rotation.y -= degToRad(-10)
         checkLocation()
       }
 
@@ -60,8 +60,7 @@ const Buttons = ({spinRef, changeLocation, }) => {
 
   return (
     <group
-    position={[30, 8, 90]}
-    rotation={[0, -0.3, 0]} 
+      scale={3}
     >
         <animated.group scale={sizeLeft}>
             <DirectionArrow rotation={[-Math.PI/2, 0, 0]} position-x={3} onClick={() => moveLeft()} />

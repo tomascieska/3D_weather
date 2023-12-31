@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function NotreDameDeParis(props) {
   const { nodes, materials } = useGLTF('/models/Notre_Dame_de_Paris.glb')
   return (
-    <group scale={3}{...props} dispose={null}>
+    <group rotation={[0, 0.5, 0]} scale={2}{...props} dispose={null}>
       <group name="Scene">
         <mesh name="er_lou_Notre_Dame_de_Paris_2_0" castShadow receiveShadow geometry={nodes.er_lou_Notre_Dame_de_Paris_2_0.geometry} material={materials.Notre_Dame_de_Paris_2} position={[0.661, 2.298, 0.001]} rotation={[0, -Math.PI / 2, 0]} scale={0.007} />
         <mesh name="yi_lou_Notre_Dame_de_Paris_3_0" castShadow receiveShadow geometry={nodes.yi_lou_Notre_Dame_de_Paris_3_0.geometry} material={materials.Notre_Dame_de_Paris_3} position={[2.641, 0.95, -0.002]} rotation={[0, -Math.PI / 2, 0]} scale={0.007} />

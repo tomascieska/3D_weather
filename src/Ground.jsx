@@ -9,7 +9,7 @@ const Ground = () => {
     '/img/water.jpg',
     '/img/water_gloss.png',
   ])
-
+ 
   const [colorMapRing, displacementMap, normalMap, roughnessMapRing, aoMap] = useLoader(TextureLoader, [
     // '/img/flat-cobble-moss-albedo.png',
     // '/img/flat-cobble-moss-height.png',
@@ -63,7 +63,7 @@ const y = 10
   return (
 <group>
     <mesh position={[0, 0.3, 0]} rotation={[-Math.PI/2, 0, 0]}>
-      <ringGeometry args={[150, 220, 100, 0]}/>
+      <ringGeometry args={[165, 220, 100, 0]}/>
       <meshStandardMaterial 
         map={colorMapRing}
         normalMap={normalMap}

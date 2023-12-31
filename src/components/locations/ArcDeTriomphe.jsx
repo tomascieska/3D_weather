@@ -6,19 +6,12 @@ Files: public/models/Arc_de_Triomphe.gltf [1.59MB] > C:\Users\Tomas\Desktop\3Dwe
 */
 
 import { useGLTF } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
-import { useRef } from 'react'
 
 export function ArcDeTriomphe(props) {
   const { nodes, materials } = useGLTF('/models/Arc_de_Triomphe.glb')
 
-  const ref = useRef()
-
-  useFrame(() => {
-      ref.current.rotation.y += 0.002
-  })
   return (
-    <group ref={ref} {...props} dispose={null}>
+    <group  rotation={[0, 0.5, 0]} scale={0.8}{...props} dispose={null}>
       <group name="Scene">
         <mesh name="Arc_de_Triomphe_arc_de_triomphe_0" castShadow receiveShadow geometry={nodes.Arc_de_Triomphe_arc_de_triomphe_0.geometry} material={materials.arc_de_triomphe} position={[0, 8.5, 1.218]} rotation={[-Math.PI / 2, 0, 0]} scale={0.02} />
       </group>

@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from "react"
 import { CameraControls, Sky} from "@react-three/drei"
 import { useSpring, animated, config } from '@react-spring/three'
 import { DirectionArrow } from './DirectionArrow'
-import { degToRad } from "three/src/math/MathUtils"
+import { degToRad, radToDeg } from "three/src/math/MathUtils"
 import { useFrame } from "@react-three/fiber"
 
 import Screen from "./Screen"
@@ -28,10 +28,10 @@ const MainScene = ({weatherData, changeLocation}) => {
     const spinRef = useRef()
 
     // useFrame(() => {
-    //   spinRef.current.rotation.y += 0.002
+    //   spinRef.current.rotation.y -= 0.005
       
     // })
-
+    
     useEffect(() => {
       setCelcius(weatherData.current.feelslike_c)
       setLocation(weatherData.location.name)
@@ -46,35 +46,34 @@ async function checkLocation(){
   if(spinRef.current.rotation.y >= degToRad(360)){
     spinRef.current.rotation.y = 0
   }
-  if(spinRef.current.rotation.y === degToRad(0)){
+  if(spinRef.current.rotation.y === 0){
 
-    meshFitCameraRef.current.position.y = 21
-    meshFitCameraRef.current.position.x = 10
-    meshFitCameraRef.current.position.z = 210
+    // meshFitCameraRef.current.position.y = 21
+    // meshFitCameraRef.current.position.x = 10
+    // meshFitCameraRef.current.position.z = 210
     fitCamera()
     return changeLocation("Paris")
     }
 
-  if(spinRef.current.rotation.y === degToRad(90) ||
-     spinRef.current.rotation.y === degToRad(-270)
+  if(spinRef.current.rotation.y ===  Math.floor(-Math.PI / 7.5) )
+    {
+    meshFitCameraRef.current.position.x = 0
+    meshFitCameraRef.current.position.y = -5
+    meshFitCameraRef.current.position.z = -15
+    controls.current.rotate(0.2, 0, 0) 
+     fitCamera()
+     return changeLocation("Salisbury")
+    }
+
+  if(spinRef.current.rotation.y === degToRad(-48) ||
+     spinRef.current.rotation.y === degToRad(48)
   ){
-    meshFitCameraRef.current.position.y = 14
-    meshFitCameraRef.current.position.x = 6
-    meshFitCameraRef.current.position.z = 250
-    fitCamera()
      return changeLocation("London")
     }
 
-  if(spinRef.current.rotation.y ===degToRad(180) || 
-     spinRef.current.rotation.y ===degToRad(-180)
-  ){
-     return changeLocation("Tokyo")
-    }
-
-    if(spinRef.current.rotation.y === degToRad(270) ||
-       spinRef.current.rotation.y === degToRad(-270)
+    if(spinRef.current.rotation.y === Math.PI / -1.875
     ){
-      return changeLocation("New York")
+      return changeLocation("Egipt")
     } 
 }
 
@@ -91,21 +90,23 @@ async function checkLocation(){
     function moveRight() {
       setRightBtn(true)
       setLeftBtn(false)
-        spinRef.current.rotation.y += (Math.PI /4)
+      spinRef.current.rotation.y -=  Math.PI / 7.5
       checkLocation()
-      console.log(spinRef.current.rotation.y)
+      console.log("move right position" + radToDeg(spinRef.current.rotation.y))
+      console.log( Math.floor(-Math.PI / 7.5))
     }
     
     function moveLeft() {
       setRightBtn(false)
       setLeftBtn(true)
-        spinRef.current.rotation.y -= (Math.PI /4)
+      spinRef.current.rotation.y += Math.PI / 7.5
       checkLocation()
+      console.log("move right left" + radToDeg(spinRef.current.rotation.y))
     }
 
 // CAMERA CONTOLS ########
 const intro = async () => {
-  controls.current.dolly(50)
+  controls.current.dolly(40)
   controls.current.smoothTime = 1
   fitCamera()
 }
@@ -124,7 +125,7 @@ useEffect(() => {
 
 const fitCamera = async () => {
   controls.current.fitToBox(meshFitCameraRef.current, true)
-//   controls.current.rotate(degToRad(5), 10, false) 
+  controls.current.rotate(0.2, 0, 0) 
 //   controls.current.setLookAt(10, 5, 30,  0, 20, 30, true)
 } 
 // ########
@@ -132,11 +133,29 @@ const fitCamera = async () => {
   return (
     <group>
         <CameraControls ref={controls}/>
+{/* camera view */}
+    <group position={[85, 15, 220]}>
 
-        <mesh ref={meshFitCameraRef} position={[18, 15, 215]}>
-            <boxGeometry args={[22, 8, 10]}/>
-            <meshBasicMaterial transparent opacity={0.8} visible={false} color={"orange"} />
+        <mesh ref={meshFitCameraRef}>
+            <boxGeometry args={[30, 15, 1]}/>
+            <meshBasicMaterial transparent opacity={0.5} visible={false} color={"orange"} />
         </mesh>
+
+        {/* BUTTONS */}
+        <group position={[12, 0, -30]} rotation={[0, 0, 0]}>
+          <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} celcius={celcius} location={location}/>
+
+          <group scale={2} position={[-5, -6, 1]}>
+            <animated.group scale={sizeLeft}>
+              <DirectionArrow rotation={[-Math.PI/2, 0, 0]} position-x={3} onClick={() => moveRight()} />
+            </animated.group>
+            <animated.group scale={sizeRight}>
+              <DirectionArrow rotation={[Math.PI/2, 0, -Math.PI]} onClick={() => moveLeft()} />
+            </animated.group>
+          </group>    
+        </group>
+    </group>
+
         <Sky />
         <CloudSky celcius={celcius}/>
         <Lights />
@@ -144,19 +163,6 @@ const fitCamera = async () => {
         <group position={[0, 0, 0]} ref={spinRef}>
           <Locations />
           <Ground changeLocation={changeLocation}/>
-        </group>
-        <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} celcius={celcius} location={location}/>       
-        {/* BUTTONS */}
-        <group position={[30, 8, 200]} rotation={[0, -0.3, 0]}>
-            
-          <animated.group scale={sizeLeft}>
-              <DirectionArrow rotation={[-Math.PI/2, 0, 0]} position-x={3} onClick={() => moveRight()} />
-          </animated.group>
-
-          <animated.group scale={sizeRight}>
-              <DirectionArrow rotation={[Math.PI/2, 0, -Math.PI]} onClick={() => moveLeft()} />
-            </animated.group>
-
         </group>
     </group>
     )
