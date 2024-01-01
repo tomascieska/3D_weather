@@ -73,7 +73,7 @@ async function checkLocation(){
     currentRotationY === 336){
     meshFitCameraRef.current.position.x = 0
     meshFitCameraRef.current.position.y = -5
-    meshFitCameraRef.current.position.z = -15
+    meshFitCameraRef.current.position.z = -10
      fitCamera()
      return changeLocation("Salisbury")
     }
@@ -242,7 +242,7 @@ const fitCamera = async () => {
         {/* BUTTONS */}
         <group scale={1.5} position={[-5, 8, -50]} rotation={[0, 0, 0]}>
           <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} />
-          <group scale={1} position={[9, -11, 11]}>
+          <group scale={1} position={[8.5, -11, 11]}>
             <animated.group scale={sizeLeft}>
               <DirectionArrow rotation={[-Math.PI/2, 0, 0]} position-x={3} onClick={() => moveLeft()} />
             </animated.group>

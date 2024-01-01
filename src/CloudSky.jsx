@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Clouds, Cloud, Float } from "@react-three/drei"
 import { useEffect, useState } from "react"
 
@@ -9,7 +10,6 @@ const [colorCloud, setcolorCloud] = useState(null)
 
   useEffect(() => {
     
-      console.log("getting color")
       console.log(data.current.temp_c)
 
       if (data.current.temp_c > 10){
@@ -20,12 +20,12 @@ const [colorCloud, setcolorCloud] = useState(null)
         return setcolorCloud("white")
       }
 
-  },[data])
+  },[data.current.temp_c])
 
   return (
-  <Float>
+  <Float speed={5} floatIntensity={5} >
     <Clouds>
-      <Cloud position={[-30, 20, -50]} segments={50} fade={10} bounds={[30, 10, 10]} volume={50} opacity={0.2} color={colorCloud} />
+      <Cloud position={[-30, 20, -50]} segments={100} fade={10} bounds={[30, 10, 10]} volume={10} opacity={0.2} color={colorCloud} />
     </Clouds>
   </Float>
 

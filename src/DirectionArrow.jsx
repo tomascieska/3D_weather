@@ -19,7 +19,7 @@ export function DirectionArrow(props) {
           <group name="54b2761560d74cf7a540d3659ba46cd1fbx" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
             <group name="RootNode">
               <group name="Arrow" rotation={[-Math.PI / 2, 0, 0]} scale={100}>
-                <mesh name="Arrow_Material001_0" geometry={nodes.Arrow_Material001_0.geometry} material-color={"darkcyan"}  material={materials['Material.001']} />
+                <mesh name="Arrow_Material001_0" geometry={nodes.Arrow_Material001_0.geometry} material-color={"#2E4550"}  material={materials['Material.001']} />
               </group>
             </group>
           </group>

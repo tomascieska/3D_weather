@@ -42,15 +42,23 @@ const Screen = ({data}) => {
 
         <Text position={[-3, 9, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={1}>
         <meshPhongMaterial color={"Black"}/>
-        {data.location.country}
+        {data.location.country}        
         </Text>
 
-        <Text position={[-1, 5, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={2}>
-        <meshPhongMaterial color={"black"}/>
-        {data.current.temp_c} c
-        {"\n"}
-        {data.current.temp_f} f
-        </Text>
+        <group position={[-2, 4, 2]} >
+          <mesh position={[3, -0.8, -1]}>
+            <boxGeometry args={[8, 3.5, 1]}/>
+            <meshStandardMaterial color={"#2E4550"}/>
+          </mesh>
+          <Text position={[-0.5, 0.2, 0]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={0.5}>
+          <meshPhongMaterial color={"white"}/>
+          tempreture now:
+          </Text>
+          <Text position={[0, -0.5, -0.1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={2}>
+          <meshPhongMaterial color={"white"}/>
+          {data.current.temp_c} c
+          </Text>
+        </group>
 
         <Text position={[-2, -8, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={0.7}>
         <meshPhongMaterial color={"grey"}/>
