@@ -4,14 +4,14 @@ import { Clouds, Cloud, Float } from "@react-three/drei"
 const CloudSky = ({celcius}) => {
 
   let colorCloud = ""
-  // console.log(celcius)
+  console.log(celcius)
 
   function getCloud() {
 
-    if (celcius > 5){
+    if (celcius > 10){
       return colorCloud = "yellow"
-    } else if (celcius < 5){
-      return colorCloud = "blue"
+    } else if (celcius < 9.9){
+      return colorCloud = "grey"
     } else {
       return colorCloud = "white"
     }
@@ -20,10 +20,12 @@ const CloudSky = ({celcius}) => {
   
   return (
   <Float>
+
     <Clouds>
-      <Cloud position={[-5, 50, 40]} segments={50} fade={10} bounds={[30, 10, 10]} volume={50} opacity={0.2} color={colorCloud} />
+      <Cloud position={[-30, 20, -50]} segments={50} fade={10} bounds={[30, 10, 10]} volume={50} opacity={0.2} color={colorCloud} />
     </Clouds>
   </Float>
+
   )
 }
 

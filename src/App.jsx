@@ -19,7 +19,6 @@ useEffect(() => {
     const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`)
     const data = await response.json()
     console.log(data)
-    console.log(data.current.feelslike_c)
     return setWeatherData(data)
   }
   getTemperature()

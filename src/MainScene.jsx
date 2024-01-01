@@ -12,7 +12,6 @@ import Lights from "./Lights"
 import Ground from "./Ground"
 import CloudSky from "./CloudSky"
 import Locations from "./Locations"
-import { useFrame } from "@react-three/fiber"
 
 
 const MainScene = ({weatherData, changeLocation}) => {
@@ -27,17 +26,17 @@ const MainScene = ({weatherData, changeLocation}) => {
     const spinRef = useRef()
    
     useEffect(() => {
-      setCelcius(weatherData.current.feelslike_c)
+      setCelcius(weatherData.current.temp_c)
       setLocation(weatherData.location.name)
-  },[])
+  },[location])
 
+
+console.log(celcius + "Main")
 //ROTATE WORLD
 function resetRotationY(){
     let currentRotationY = Math.round(radToDeg(spinRef.current.rotation.y))
         if(currentRotationY === -360){
           spinRef.current.rotation.y = 0
-          console.log(currentRotationY)
-          console.log("yes")
         }
         if(currentRotationY === 360){
           spinRef.current.rotation.y = 0
@@ -49,8 +48,8 @@ function resetRotationY(){
       setRightBtn(true)
       setLeftBtn(false)
       spinRef.current.rotation.y += degToRad(24)
+      setCelcius(weatherData.current.temp_c)
       checkLocation()
-      console.log("move right position" + Math.round(radToDeg(spinRef.current.rotation.y)))
     }
     
     function moveLeft() {
@@ -58,8 +57,8 @@ function resetRotationY(){
       setRightBtn(false)
       setLeftBtn(true)
       spinRef.current.rotation.y -= degToRad(24)
+      setCelcius(weatherData.current.temp_c)
       checkLocation()
-      console.log("move right left" + Math.round(radToDeg(spinRef.current.rotation.y)))
     }
  
     // useFrame(() => {
@@ -75,7 +74,6 @@ async function checkLocation(){
   if(currentRotationY === -360){
     currentRotationY = 0
     console.log(currentRotationY)
-    console.log("yes")
   }
   if(currentRotationY >= 360){
      currentRotationY = 0
@@ -251,7 +249,8 @@ const fitCamera = async () => {
     <group>
         <CameraControls ref={controls}/>
 {/* camera view */}
-    <group position={[85, 15, 220]}>
+      <group position={[85, 15, 220]}>
+        <CloudSky celcius={celcius}/>
 
         <mesh ref={meshFitCameraRef}>
             <boxGeometry args={[30, 15, 1]}/>
@@ -274,7 +273,6 @@ const fitCamera = async () => {
     </group>
 
         <Sky />
-        <CloudSky celcius={celcius}/>
         <Lights />
 
         <group position={[0, 0, 0]} ref={spinRef}>
