@@ -10,7 +10,7 @@ import { useGLTF } from '@react-three/drei'
 export function TajMahal(props) {
   const { nodes, materials } = useGLTF('/models/Taj_Mahal.glb')
   return (
-    <group scale={3} rotation={[0, - Math.PI / 3.3, 0]} {...props} dispose={null}>
+    <group scale={3} rotation={[0, - Math.PI / 4, 0]} {...props} dispose={null}>
       <group name="Scene">
         <mesh name="Taj_Mahal_glass_4_0" castShadow receiveShadow geometry={nodes.Taj_Mahal_glass_4_0.geometry} material={materials.glass_4} position={[0, 1.641, 0]} scale={0.01} />
         <mesh name="Taj_Mahal_Taj_Mahal_0" castShadow receiveShadow geometry={nodes.Taj_Mahal_Taj_Mahal_0.geometry} material={materials.Taj_Mahal} position={[0, 1.641, 0]} scale={0.01} />

@@ -3,9 +3,10 @@
 import { Text, Text3D } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { useEffect, useState} from "react"
+import { MobilePhone } from "./MobilePhone"
 
-const Screen = ({ data}) => {
 
+const Screen = ({data}) => {
 
     const [hours, setHours] = useState()
     const [minutes, setMinutes] = useState()
@@ -23,37 +24,35 @@ const Screen = ({ data}) => {
 
 
   return (
-<group
-  // rotation={[0, -0.3, 0]}
-  visible={true}
-  >
-
+<group position={[10, -15, 10]} visible={true}>
+{/* 
         <mesh >
             <boxGeometry args={[30, 30, 1]}/>
             <meshBasicMaterial transparent opacity={0.5} visible={true} color={"white"} />
-        </mesh>
+        </mesh> */}
 
-    <mesh position={[-12, 8, 1]} castShadow receiveShadow >
+    <MobilePhone  />
+    <mesh position={[-1, 10, 0]} castShadow receiveShadow >
 
-        <Text3D position={[-1, 0, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'} size={3}
+        <Text3D position={[-3, 10, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'} size={1.2}
         smooth={0.01} lineHeight={3} bevelEnabled bevelThickness={0.1}>
         <meshPhongMaterial color={"Grey"}/>
         {data.location.name}
         </Text3D>
 
-        <Text position={[2, -1, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={1.5}>
+        <Text position={[-3, 9, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={1}>
         <meshPhongMaterial color={"Black"}/>
         {data.location.country}
         </Text>
 
-        <Text position={[-1, -3, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={2}>
+        <Text position={[-1, 5, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={2}>
         <meshPhongMaterial color={"black"}/>
         {data.current.temp_c} c
         {"\n"}
         {data.current.temp_f} f
         </Text>
 
-        <Text position={[-1, -8, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={1}>
+        <Text position={[-2, -8, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={0.7}>
         <meshPhongMaterial color={"grey"}/>
         Local time: {hours}:{minutes}:{seconds} 
         </Text>

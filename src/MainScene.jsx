@@ -13,11 +13,8 @@ import Ground from "./Ground"
 import CloudSky from "./CloudSky"
 import Locations from "./Locations"
 
-
 const MainScene = ({weatherData, changeLocation}) => {
 
-    const [celcius, setCelcius] = useState()
-    const [location, setLocation] = useState()
     const [rightBtn, setRightBtn] = useState(false)
     const [leftBtn, setLeftBtn] = useState(false)
 
@@ -25,13 +22,7 @@ const MainScene = ({weatherData, changeLocation}) => {
     const controls = useRef()
     const spinRef = useRef()
    
-    useEffect(() => {
-      setCelcius(weatherData.current.temp_c)
-      setLocation(weatherData.location.name)
-  },[location])
 
-
-console.log(celcius + "Main")
 //ROTATE WORLD
 function resetRotationY(){
     let currentRotationY = Math.round(radToDeg(spinRef.current.rotation.y))
@@ -45,27 +36,19 @@ function resetRotationY(){
 
     function moveRight() {
       resetRotationY()
-      setRightBtn(true)
-      setLeftBtn(false)
+      setRightBtn(false)
+      setLeftBtn(true)
       spinRef.current.rotation.y += degToRad(24)
-      setCelcius(weatherData.current.temp_c)
       checkLocation()
     }
     
     function moveLeft() {
       resetRotationY()
-      setRightBtn(false)
-      setLeftBtn(true)
+      setRightBtn(true)
+      setLeftBtn(false)
       spinRef.current.rotation.y -= degToRad(24)
-      setCelcius(weatherData.current.temp_c)
       checkLocation()
     }
- 
-    // useFrame(() => {
-    //   controls.current.position.x += 200 * Math.cos( (Math.PI * 2) / 14)
-    //   controls.current.position.z += 200 * Math.sin( (Math.PI * 2) / 14)
-    //   fitCamera()
-    // })
 
 // CHECK LOCATION
 async function checkLocation(){
@@ -215,8 +198,8 @@ async function checkLocation(){
 
 //ANIMATIONS
     const {sizeRight, sizeLeft} = useSpring({
-      sizeRight: rightBtn ? 0.9 : 1.2,
-      sizeLeft: leftBtn ? 0.9 : 1.2,
+      sizeRight: rightBtn ? 1 : 1.2,
+      sizeLeft: leftBtn ? 1 : 1.2,
       config: config.wobbly,
     })
 
@@ -250,18 +233,16 @@ const fitCamera = async () => {
         <CameraControls ref={controls}/>
 {/* camera view */}
       <group position={[85, 15, 220]}>
-        <CloudSky celcius={celcius}/>
+        <CloudSky data={weatherData}/>
 
         <mesh ref={meshFitCameraRef}>
             <boxGeometry args={[30, 15, 1]}/>
             <meshBasicMaterial transparent opacity={0.2} visible={false} color={"orange"} />
         </mesh>
-
         {/* BUTTONS */}
-        <group position={[12, 0, -30]} rotation={[0, 0, 0]}>
-          <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} celcius={celcius} location={location}/>
-
-          <group scale={2} position={[-5, -6, 1]}>
+        <group scale={1.5} position={[-5, 8, -50]} rotation={[0, 0, 0]}>
+          <Screen size={2} color={'purple'} changeLocation={changeLocation} data={weatherData} />
+          <group scale={1} position={[9, -11, 11]}>
             <animated.group scale={sizeLeft}>
               <DirectionArrow rotation={[-Math.PI/2, 0, 0]} position-x={3} onClick={() => moveLeft()} />
             </animated.group>

@@ -52,9 +52,9 @@ const Locations = () => {
 
         <BigBen
             position={[
-                R * Math.cos( (Math.PI * 2 * 0.5) / numberOfObjects),
+                R * Math.cos( (Math.PI * 2 * 1) / numberOfObjects),
                 0,
-                R * Math.sin( (Math.PI * 2 * 0.5) / numberOfObjects),
+                R * Math.sin( (Math.PI * 2 * 1) / numberOfObjects),
             ]}/>
 
         <Stonehenge 
