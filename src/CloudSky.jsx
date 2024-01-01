@@ -20,7 +20,7 @@ const [colorCloud, setcolorCloud] = useState(null)
         return setcolorCloud("white")
       }
 
-  },[data.current.temp_c])
+  },[data])
 
   return (
   <Float speed={5} floatIntensity={5} >
