@@ -26,7 +26,7 @@ function App() {
     }
     
     useEffect(() => {
-      getTemperature()    
+      getTemperature()
     }, [getWeather])
     
     // useEffect(() => {
@@ -37,17 +37,17 @@ function App() {
     //         setWeatherData(result);
     //       }
     //     )
-    // }, [getWeather])x
+    // }, [getWeather])
 
     
-  function runWeather (loc){
+  function runWeather(loc){
     setGetWeather(!getWeather)
     location = loc
   }
 
   return (
     <>
-    <Canvas shadows >
+    <Canvas shadows frameloop="demand">
       <color attach="background" args={['pink']}/>
       <Suspense fallback={null}>
        { weatherData && <MainScene changeLocation={runWeather} weatherData={weatherData} /> }
