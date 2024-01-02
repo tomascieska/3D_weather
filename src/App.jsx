@@ -5,6 +5,10 @@ import { Suspense, useEffect, useState } from 'react'
 
 import MainScene from './MainScene'
 import './index.css'
+import { MeshStandardMaterial } from 'three'
+import { BigBen } from './components/locations/BigBen'
+import Lights from './Lights'
+import { OrbitControls } from '@react-three/drei'
 
 const apiKey = import.meta.env.VITE_APIKEY
 let location = "Paris"
@@ -36,12 +40,15 @@ function App() {
 
   return (
     <>
-    <Suspense fallback={<h1>Loading.............</h1>}>
+      <div className='header'>
+        <h1>loading</h1>
+      </div>
       <Canvas performance={{ min: 0.5 }} shadows frameloop="demand">
-        <color attach="background" args={['pink']}/>
+        <color attach="background" args={['lightblue']}/>
+      <Suspense>
         { weatherData && <MainScene changeLocation={runWeather} weatherData={weatherData} /> }
+      </Suspense>
       </Canvas>
-    </Suspense>
     </>
   )
 }
