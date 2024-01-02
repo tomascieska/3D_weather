@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 // import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
-import { useEffect, useState, useRef, Suspense } from "react"
+import { useEffect, useState, useRef } from "react"
 import { CameraControls, Sky} from "@react-three/drei"
 import { useSpring, animated, config } from '@react-spring/three'
 import { DirectionArrow } from './DirectionArrow'
 import { degToRad, radToDeg } from "three/src/math/MathUtils"
+// import { Perf } from 'r3f-perf'
 
 import Screen from "./Screen"
 import Lights from "./Lights"
@@ -254,7 +255,7 @@ const fitCamera = async () => {
 
         <Sky />
         <Lights />
-
+        {/* <Perf /> */}
         <group position={[0, 0, 0]} ref={spinRef}>
           <Locations />
           <Ground changeLocation={changeLocation}/>

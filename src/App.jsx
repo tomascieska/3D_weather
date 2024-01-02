@@ -4,7 +4,6 @@ import { Canvas } from '@react-three/fiber'
 import { Suspense, useEffect, useState } from 'react'
 import { FaRegArrowAltCircleDown } from "react-icons/fa";
 
-
 import MainScene from './MainScene'
 import './index.css'
 
@@ -37,10 +36,16 @@ function App() {
     location = loc
   }
 
+    function scroll(){
+      document.documentElement.scrollTop = document.documentElement.scrollHeight;
+      console.log("scroll")
+    }
+
   return (
     <>
     <nav>
-      <h3>3D Weather Forecast</h3>
+      <h3>3D Weather Forecasta</h3>
+      <p> V0.01 beta</p>
       <div className='nav-right'>
        <p><a href="#">About the project</a></p> 
        <p><a href="#">Contact</a></p> 
@@ -48,14 +53,14 @@ function App() {
     </nav>
       <div className='header'>
         <div className='left-hero'>
-          <h1>Get Weather Forecast's</h1>
-          <h2>3D dimentional experience. </h2> 
+          <h1 className='h1'>Get Weather Forecast`s</h1>
+          <h2>3D dimentional experience.</h2> 
         </div>
         <div className='right-hero'>
           <img src="/img/hero.jpg" alt="3d london weather now" />
         </div>
         <div className={"icon"}>
-          <FaRegArrowAltCircleDown size={50}/>
+          <FaRegArrowAltCircleDown onClick={scroll} size={50}/>
         </div>
       </div>
       <Canvas performance={{ min: 0.5 }} shadows frameloop="demand">

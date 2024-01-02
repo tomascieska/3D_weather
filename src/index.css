@@ -130,35 +130,29 @@ a:active {
 
 .icon {
   padding: 30px;
+  cursor: pointer;
 }
-
-@media (max-width: 400px){
-    h1 {
+/* 
+@media (min-width: 600px){
+    .h1 {
       font-size: 3rem;
       color: rgb(88, 1, 23);
     }
     h2 {
       font-size: 1.5rem;
     }
-    .header {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      width: 100%;
-    }
+
     img {
       width: 60%;
     }
 }
 
-/* @media (max-width: 400px){
+@media (max-width: 400px){
   img {
     width: 55%;
   }
-  a {
-    padding-top: 300px;
-    font-size: 2em;
+  .h1 {
+    font-size: 3rem;
+    color: rgb(3, 247, 3);
   }
 } */
