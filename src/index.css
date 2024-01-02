@@ -22,17 +22,18 @@ body {
 .header {
   margin: 30px;  
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 95vh;
   background-color: whitesmoke;
   text-align: center;
   padding: 10px;
 }
 
-.header, img {
+.header, img{
   transform:
-  perspective(90em)
+  perspective(80em)
   rotateX(9deg);
 box-shadow:
   rgba(97, 177, 214, 0.42) 0px 60px 123px -25px,
@@ -45,30 +46,27 @@ border-color:
   rgb(184, 194, 204);
 }
 
-.right-hero {
-  width: 70%;
-  /* background-color: black; */
-  
-}
-
 .left-hero {
-  padding-left: 20px;
+  margin: 2px;
+  padding: 20px;
   max-width: 600px;
   justify-content: center;
   align-items: center;
+  border-radius: 52px;
+  /* background-color: red; */
 }
 
 h1 {
   color: darkslategrey;
   font-weight: 700;
-  font-size: 4em;
+  font-size: 2rem;
 }
 
 h2 {
   color: black;
   padding: 0 0 30px 0;
   font-weight: 400;
-  font-size: 3em;
+  font-size: 2rem;
 }
   
 h3 {
@@ -82,3 +80,77 @@ img {
   width: 70%;
   border-radius: 50px;
 }
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+nav h3{
+  padding: 30px 0 0 20px;
+  color: white;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.nav-right {
+    display: flex;
+}
+
+.nav-right p {
+    padding-right: 50px;
+}
+
+/* unvisited link */
+a:link {
+  color: rgb(4, 68, 80);
+  text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+  color: rgb(0, 2, 97);
+  text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+  color: rgb(39, 39, 39);
+  text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+  color: rgb(30, 30, 48);
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px){
+    h1 {
+      font-size: 3rem;
+      color: rgb(88, 1, 23);
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    .header {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    img {
+      width: 60%;
+    }
+}
+
+/* @media (max-width: 400px){
+  img {
+    width: 55%;
+  }
+  a {
+    padding-top: 300px;
+    font-size: 2em;
+  }
+} */

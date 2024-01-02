@@ -40,12 +40,16 @@ function App() {
   return (
     <>
     <nav>
-      <h3>3d weather forecast</h3>
+      <h3>3D Weather Forecast</h3>
+      <div className='nav-right'>
+       <p><a href="#">About the project</a></p> 
+       <p><a href="#">Contact</a></p> 
+      </div>
     </nav>
       <div className='header'>
         <div className='left-hero'>
-          <h1>Get Weather Forecast</h1>
-          <h2>in 3D dimentional experience. </h2> 
+          <h1>Get Weather Forecast's</h1>
+          <h2>3D dimentional experience. </h2> 
               <FaRegArrowAltCircleDown size={50}/>
         </div>
         <div className='right-hero'>
