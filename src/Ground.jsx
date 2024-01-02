@@ -7,7 +7,7 @@ import { RepeatWrapping, TextureLoader } from "three"
 const Ground = () => {
   const [colorMap, roughnessMap]= useLoader(TextureLoader, [
     '/img/water.jpg',
-    '/img/water_gloss.png',
+    '/img/water_gloss.jpg',
   ])
  
   const [colorMapRing, displacementMap, normalMap, roughnessMapRing, aoMap] = useLoader(TextureLoader, [

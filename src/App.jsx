@@ -29,17 +29,6 @@ function App() {
       getTemperature()
     }, [getWeather])
     
-    // useEffect(() => {
-    //   fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`)
-    //     .then(res => res.json())
-    //     .then(
-    //       (result) => {
-    //         setWeatherData(result);
-    //       }
-    //     )
-    // }, [getWeather])
-
-    
   function runWeather(loc){
     setGetWeather(!getWeather)
     location = loc
@@ -47,12 +36,12 @@ function App() {
 
   return (
     <>
-    <Canvas shadows frameloop="demand">
-      <color attach="background" args={['pink']}/>
-      <Suspense fallback={null}>
-       { weatherData && <MainScene changeLocation={runWeather} weatherData={weatherData} /> }
-      </Suspense>
-    </Canvas>
+    <Suspense fallback={<h1>Loading.............</h1>}>
+      <Canvas performance={{ min: 0.5 }} shadows frameloop="demand">
+        <color attach="background" args={['pink']}/>
+        { weatherData && <MainScene changeLocation={runWeather} weatherData={weatherData} /> }
+      </Canvas>
+    </Suspense>
     </>
   )
 }
