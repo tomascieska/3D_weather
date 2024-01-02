@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,15 +9,76 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Playfair Display', serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 #root {
   width: 100%;
-  height: 100vh;
-  background-color: black;
+  height: 95vh;
+  background-color: rgb(186, 235, 255);
 }
 
 .header {
-  height: 100%;
-  background-color: aquamarine;
+  margin: 30px;  
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 95vh;
+  background-color: whitesmoke;
+  text-align: center;
+  padding: 10px;
+}
+
+.header, img {
+  transform:
+  perspective(90em)
+  rotateX(9deg);
+box-shadow:
+  rgba(97, 177, 214, 0.42) 0px 60px 123px -25px,
+  rgba(108, 146, 158, 0.08) 0px 35px 75px -35px;
+border-radius: 10px;
+padding: 5px;
+border-color:
+  rgb(213, 220, 226)
+  rgb(213, 220, 226)
+  rgb(184, 194, 204);
+}
+
+.right-hero {
+  width: 70%;
+  /* background-color: black; */
+  
+}
+
+.left-hero {
+  padding-left: 20px;
+  max-width: 600px;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: darkslategrey;
+  font-weight: 700;
+  font-size: 4em;
+}
+
+h2 {
+  color: black;
+  padding: 0 0 30px 0;
+  font-weight: 400;
+  font-size: 3em;
+}
+  
+h3 {
+  color: white;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  border-radius: 50px;
 }

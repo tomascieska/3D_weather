@@ -2,13 +2,12 @@
 
 import { Canvas } from '@react-three/fiber'
 import { Suspense, useEffect, useState } from 'react'
+import { FaRegArrowAltCircleDown } from "react-icons/fa";
+
 
 import MainScene from './MainScene'
 import './index.css'
-import { MeshStandardMaterial } from 'three'
-import { BigBen } from './components/locations/BigBen'
-import Lights from './Lights'
-import { OrbitControls } from '@react-three/drei'
+
 
 const apiKey = import.meta.env.VITE_APIKEY
 let location = "Paris"
@@ -40,8 +39,18 @@ function App() {
 
   return (
     <>
+    <nav>
+      <h3>3d weather forecast</h3>
+    </nav>
       <div className='header'>
-        <h1>loading</h1>
+        <div className='left-hero'>
+          <h1>Get Weather Forecast</h1>
+          <h2>in 3D dimentional experience. </h2> 
+              <FaRegArrowAltCircleDown size={50}/>
+        </div>
+        <div className='right-hero'>
+          <img src="/img/hero.jpg" alt="3d london weather now" />
+        </div>
       </div>
       <Canvas performance={{ min: 0.5 }} shadows frameloop="demand">
         <color attach="background" args={['lightblue']}/>
