@@ -22,8 +22,6 @@ const MainScene = ({weatherData, changeLocation}) => {
     const controls = useRef()
     const spinRef = useRef()
 
-console.log(weatherData)
-
 //ROTATE WORLD
 function resetRotationY(){
     let currentRotationY = Math.round(radToDeg(spinRef.current.rotation.y))
