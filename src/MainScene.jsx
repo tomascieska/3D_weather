@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
 // import { PerspectiveCamera, OrbitControls } from '@react-three/drei'
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState, useRef, Suspense } from "react"
 import { CameraControls, Sky} from "@react-three/drei"
 import { useSpring, animated, config } from '@react-spring/three'
 import { DirectionArrow } from './DirectionArrow'
@@ -21,7 +21,8 @@ const MainScene = ({weatherData, changeLocation}) => {
     const meshFitCameraRef = useRef()
     const controls = useRef()
     const spinRef = useRef()
-   
+
+console.log(weatherData)
 
 //ROTATE WORLD
 function resetRotationY(){
@@ -236,8 +237,8 @@ const fitCamera = async () => {
         <CloudSky data={weatherData}/>
 
         <mesh ref={meshFitCameraRef}>
-            <boxGeometry args={[30, 15, 1]}/>
-            <meshBasicMaterial transparent opacity={0.2} visible={false} color={"orange"} />
+          <boxGeometry args={[30, 15, 1]}/>
+          <meshBasicMaterial transparent opacity={0.2} visible={false} color={"orange"} />
         </mesh>
         {/* BUTTONS */}
         <group scale={1.5} position={[-5, 8, -50]} rotation={[0, 0, 0]}>

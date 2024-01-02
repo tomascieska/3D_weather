@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unknown-property */
 import { Text, Text3D } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
-import { useEffect, useState} from "react"
+import { useState} from "react"
 import { MobilePhone } from "./MobilePhone"
 
 
@@ -21,15 +21,8 @@ const Screen = ({data}) => {
         getMinutes()
         getSeconds()
     })
-
-
   return (
 <group position={[10, -15, 10]} visible={true}>
-{/* 
-        <mesh >
-            <boxGeometry args={[30, 30, 1]}/>
-            <meshBasicMaterial transparent opacity={0.5} visible={true} color={"white"} />
-        </mesh> */}
 
     <MobilePhone  />
     <mesh position={[-1, 10, 0]} castShadow receiveShadow >
@@ -37,12 +30,12 @@ const Screen = ({data}) => {
         <Text3D position={[-3, 10, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'} size={1.2}
         smooth={0.01} lineHeight={3} bevelEnabled bevelThickness={0.1}>
         <meshPhongMaterial color={"Grey"}/>
-        {data.location.name}
+          {data.location.name}
         </Text3D>
 
         <Text position={[-3, 9, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={1}>
         <meshPhongMaterial color={"Black"}/>
-        {data.location.country}        
+         {data.location.country}        
         </Text>
 
         <group position={[-2, 4, 2]} >
@@ -54,9 +47,10 @@ const Screen = ({data}) => {
           <meshPhongMaterial color={"white"}/>
           tempreture now:
           </Text>
+
           <Text position={[0, -0.5, -0.1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={2}>
           <meshPhongMaterial color={"white"}/>
-          {data.current.temp_c} c
+            {data.current.temp_c} c
           </Text>
         </group>
 
