@@ -50,10 +50,12 @@ function App() {
         <div className='left-hero'>
           <h1>Get Weather Forecast's</h1>
           <h2>3D dimentional experience. </h2> 
-              <FaRegArrowAltCircleDown size={50}/>
         </div>
         <div className='right-hero'>
           <img src="/img/hero.jpg" alt="3d london weather now" />
+        </div>
+        <div className={"icon"}>
+          <FaRegArrowAltCircleDown size={50}/>
         </div>
       </div>
       <Canvas performance={{ min: 0.5 }} shadows frameloop="demand">
