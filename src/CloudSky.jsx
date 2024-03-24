@@ -23,9 +23,9 @@ const [colorCloud, setcolorCloud] = useState(null)
   },[data])
 
   return (
-  <Float speed={5} floatIntensity={5} >
+  <Float speed={1} floatIntensity={1} >
     <Clouds>
-      <Cloud position={[-30, 20, -50]} segments={100} fade={10} bounds={[30, 10, 10]} volume={10} opacity={0.2} color={colorCloud} />
+      <Cloud position={[-30, 20, -50]} segments={100} fade={10} bounds={[30, 10, 10]} volume={10} opacity={0.1} color={colorCloud} />
     </Clouds>
   </Float>
 
