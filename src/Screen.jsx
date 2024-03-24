@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unknown-property */
-import { Text, Text3D, Image, RoundedBox } from "@react-three/drei"
+import { Text, Text3D, Image } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { useState} from "react"
 import { MobilePhone } from "./MobilePhone"

@@ -29,7 +29,6 @@ function App() {
     
     useEffect(() => {
       getTemperature()
-      console.log(weatherData)
     }, [getWeather])
     
   function runWeather(loc){
@@ -46,7 +45,7 @@ function App() {
     <>
     <nav>
       <h3>3D Weather Forecasta</h3>
-      <p> V0.01 beta</p>
+      <p> <strong> V0.1 beta </strong> - <i>build by Tomas Cieska</i></p>
       <div className='nav-right'>
        <p><a href="#">About the project</a></p> 
        <p><a href="#">Contact</a></p> 
