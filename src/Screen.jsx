@@ -42,16 +42,16 @@ const Screen = ({data}) => {
          
           <Text position={[-0.5, 1, 0]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={0.8}>
           <meshPhongMaterial color={"black"}/>
-          tempreture now:
+          temperature now:
           </Text>
 
           <Text position={[0, -0.5, -0.1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={2.5}>
-          <meshPhongMaterial color={"black"}/>
+          <meshPhongMaterial color={"#3b3b3b"}/>
             {data.current.temp_c}c
           </Text>
 
-          <Image  url={data.current.condition.icon} scale={5} position={[3, -6, 0]} />
-            {/* <meshStandardMaterial color={"#2E4550"}/> */}
+          <Image url={data.current.condition.icon} scale={4} position={[3, -6, 0]} />
+            {/* <meshStandardMaterial color={"red"}/> */}
         </group>
 
         <Text position={[-2, -8, 1]} anchorX="top" anchorY="top" font={'fonts/Roboto_Regular.json'}  fontSize={0.7}>
