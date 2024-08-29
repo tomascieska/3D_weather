@@ -44,8 +44,8 @@ function App() {
   return (
     <>
     <nav>
-      <h3>3D Weather Forecasta</h3>
-      <p> <strong> V0.1 beta </strong> - <i>build by Tomas Cieska</i></p>
+      <h3>3D Weather Forecast</h3>
+      <p>  <i> Build  and designed by Tomas Cieska (V0.1 beta) </i></p>
       <div className='nav-right'>
        <p><a href="#">About the project</a></p> 
        <p><a href="#">Contact</a></p> 
@@ -54,7 +54,7 @@ function App() {
       <div className='header'>
         <div className='left-hero'>
           <h1 className='h1'>Get Weather Forecast`s</h1>
-          <h2>3D dimentional experience.</h2> 
+          <h2>3D experience.</h2> 
         </div>
         <div className='right-hero'>
           <img src="/img/hero.jpg" alt="3d london weather now" />
