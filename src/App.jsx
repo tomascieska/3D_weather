@@ -8,7 +8,6 @@ import MainScene from './MainScene'
 import './index.css'
 
 
-const apiKey = import.meta.env.VITE_APIKEY
 let location = "Paris"
 
 function App() {
@@ -19,7 +18,7 @@ function App() {
 
     const getTemperature = async () => {
       try{
-        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`)
+        const response = await fetch(`/.netlify/functions/weather?location=${encodeURIComponent(location)}`)
         const data = await response.json()
         return setWeatherData(data)
       } catch (error) {
