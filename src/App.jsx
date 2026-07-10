@@ -2,13 +2,13 @@
 
 import { Canvas } from '@react-three/fiber'
 import { Suspense, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FaRegArrowAltCircleDown } from "react-icons/fa";
 
 import MainScene from './MainScene'
 import './index.css'
 
 
-const apiKey = import.meta.env.VITE_APIKEY
 let location = "Paris"
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
 
     const getTemperature = async () => {
       try{
-        const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${location}&aqi=no`)
+        const response = await fetch(`/.netlify/functions/weather?location=${encodeURIComponent(location)}`)
         const data = await response.json()
         return setWeatherData(data)
       } catch (error) {
@@ -47,8 +47,9 @@ function App() {
       <h3>3D Weather Forecast</h3>
       <p>  <i> Build  and designed by Tomas Cieska (V0.1 beta) </i></p>
       <div className='nav-right'>
-       <p><a href="#">About the project</a></p> 
-       <p><a href="#">Contact</a></p> 
+       <p><a href="#">About the project</a></p>
+       <p><a href="#">Contact</a></p>
+       <p><Link to="/v2">Try v2</Link></p>
       </div>
     </nav>
       <div className='header'>
