@@ -2,6 +2,7 @@
 
 import { Canvas } from '@react-three/fiber'
 import { Suspense, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FaRegArrowAltCircleDown } from "react-icons/fa";
 
 import MainScene from './MainScene'
@@ -46,8 +47,9 @@ function App() {
       <h3>3D Weather Forecast</h3>
       <p>  <i> Build  and designed by Tomas Cieska (V0.1 beta) </i></p>
       <div className='nav-right'>
-       <p><a href="#">About the project</a></p> 
-       <p><a href="#">Contact</a></p> 
+       <p><a href="#">About the project</a></p>
+       <p><a href="#">Contact</a></p>
+       <p><Link to="/v2">Try v2</Link></p>
       </div>
     </nav>
       <div className='header'>
